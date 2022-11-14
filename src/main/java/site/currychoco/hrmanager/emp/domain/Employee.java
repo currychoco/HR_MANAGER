@@ -36,4 +36,16 @@ public class Employee {
     private String email;
     @Column(name = "phone")
     private String phone;
+
+    public Employee(EmployeeDto dto){
+        this.empNo = dto.getEmpNo();
+        this.deptCode = dto.getDeptCode();
+        this.jobCode = dto.getJobCode();
+        this.positionCode = dto.getPositionCode();
+        this.empName = dto.getEmpName();
+        this.empNameEn = dto.getEmpNameEn();
+        this.gender = dto.getGender();
+        this.email = dto.getEmail();
+        this.phone = dto.getPhone();
+    }
 }

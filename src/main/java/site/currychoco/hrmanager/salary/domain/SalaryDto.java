@@ -6,25 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "account_authority")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString
-public class Salary {
-    @Id
-    @Column(name = "emp_no")
+public class SalaryDto {
+
     private Long empNo;
-    @Column(name = "amount")
     private long amount;
 
-    public Salary(SalaryDto salaryDto){
-        this.empNo = salaryDto.getEmpNo();
-        this.amount = salaryDto.getAmount();
+    public static SalaryDto fromEntity(Salary salary){
+        if(salary == null){
+            return null;
+        }
+        return new SalaryDto(
+            salary.getEmpNo(),
+            salary.getAmount()
+        );
     }
 }

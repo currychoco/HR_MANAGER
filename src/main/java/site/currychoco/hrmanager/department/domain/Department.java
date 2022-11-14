@@ -1,4 +1,4 @@
-package site.currychoco.hrmanager.dept.domain;
+package site.currychoco.hrmanager.department.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +30,5 @@ public class Department {
     private String deptNameEn;
     @Column(name = "dept_level")
     private int deptLevel;
+
 }

@@ -22,4 +22,9 @@ public class Authority {
     private String authCode;
     @Column(name = "auth_name")
     private String authName;
+
+    public Authority(AuthorityDto auth){
+        this.authCode = auth.getAuthCode();
+        this.authName = auth.getAuthName();
+    }
 }

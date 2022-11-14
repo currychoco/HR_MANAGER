@@ -1,8 +1,8 @@
-package site.currychoco.hrmanager.dept.repository;
+package site.currychoco.hrmanager.department.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import site.currychoco.hrmanager.dept.domain.Department;
+import site.currychoco.hrmanager.department.domain.Department;
 
 public interface DepartmentRepository extends JpaRepository<Department, String> {
 
