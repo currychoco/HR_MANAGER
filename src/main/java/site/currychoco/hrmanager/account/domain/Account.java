@@ -1,0 +1,28 @@
+package site.currychoco.hrmanager.account.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "account")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@ToString
+public class Account {
+    @Id
+    @Column(name = "emp_no")
+    private Long empNo;
+    @Column(name = "id")
+    private String id;
+    @Column(name = "password")
+    private String password;
+
+}
