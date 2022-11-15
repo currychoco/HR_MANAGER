@@ -25,4 +25,9 @@ public class Account {
     @Column(name = "password")
     private String password;
 
+    public Account(AccountDto dto){
+        this.empNo = dto.getEmpNo();
+        this.id = dto.getId();
+        this.password = dto.getPassword();
+    }
 }

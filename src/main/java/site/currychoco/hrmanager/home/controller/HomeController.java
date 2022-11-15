@@ -3,8 +3,6 @@ package site.currychoco.hrmanager.home.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Calendar;
-
 @Controller
 public class HomeController {
 
@@ -12,4 +10,20 @@ public class HomeController {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "log/login";
+    }
+
+    @GetMapping("/join")
+    public String join(){
+        return "log/join";
+    }
+
+    @GetMapping("/businesscard")
+    public String application(){
+        return "businesscard/applicationCard";
+    }
+
 }

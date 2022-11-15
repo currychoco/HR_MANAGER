@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "employee")
@@ -36,6 +37,8 @@ public class Employee {
     private String email;
     @Column(name = "phone")
     private String phone;
+    @Column(name="start_date")
+    private Timestamp startDate;
 
     public Employee(EmployeeDto dto){
         this.empNo = dto.getEmpNo();
@@ -47,5 +50,6 @@ public class Employee {
         this.gender = dto.getGender();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
+        this.startDate = dto.getStartDate();
     }
 }

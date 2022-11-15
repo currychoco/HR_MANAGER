@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class EmployeeDto {
     private String gender;
     private String email;
     private String phone;
+    private Timestamp startDate;
 
     public static EmployeeDto fromEntity(Employee emp){
         if(emp == null){
@@ -37,7 +39,8 @@ public class EmployeeDto {
                 emp.getEmpNameEn(),
                 emp.getGender(),
                 emp.getEmail(),
-                emp.getPhone()
+                emp.getPhone(),
+                emp.getStartDate()
         );
     }
 }
