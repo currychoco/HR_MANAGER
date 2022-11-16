@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: currychoco
@@ -12,7 +13,7 @@
     <script src="/js/login.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"/>
+<c:import url="/WEB-INF/views/header.jsp"/>
 <section>
     <div>
         <input type="text" id="id" name="id" placeholder="아이디" required/>

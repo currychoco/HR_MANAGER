@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: currychoco
@@ -11,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<c:import url="header.jsp"/>
 <section>
     메인화면
 </section>

@@ -12,6 +12,7 @@ function login(){
     }).done(function(response){
         if(response){
             alert("로그인 성공");
+            location.href="/";
         }else{
             alert("로그인 실패");
         }

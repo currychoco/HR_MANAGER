@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: currychoco
@@ -11,6 +12,9 @@
     <title>Title</title>
 </head>
 <body>
-명함 신청 기능~
+<c:import url="/WEB-INF/views/header.jsp"/>
+<section>
+    카드신청화면
+</section>
 </body>
 </html>
