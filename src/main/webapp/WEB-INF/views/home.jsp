@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <c:import url="/WEB-INF/views/layout/head.jsp"/>
 </head>
 <body>
 <c:import url="header.jsp"/>

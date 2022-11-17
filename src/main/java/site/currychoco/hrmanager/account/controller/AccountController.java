@@ -36,7 +36,7 @@ public class AccountController {
 
             HttpSession session = request.getSession();
             session.setAttribute("id", result.getId());
-
+            session.setAttribute("empNo", result.getEmpNo());
             // 로그인 된 계정의 권한 확인하기
             List<String> grantList = accountAuthorityService.getAllGrant(result.getEmpNo());
 

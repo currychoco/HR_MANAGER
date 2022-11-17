@@ -26,4 +26,7 @@ public class HomeController {
         return "businesscard/applicationCard";
     }
 
+    @GetMapping("/empinfo")
+    public String userInfo(){return "employee/empInfo";}
+
 }

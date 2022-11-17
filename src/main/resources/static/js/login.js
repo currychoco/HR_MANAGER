@@ -20,3 +20,22 @@ function login(){
         console.log(err)
     });
 }
+
+$(document).ready(function() {
+
+    /*
+    document.getElementById("password").addEventListener("keyup", function() {
+
+    });
+
+    $("#password").on("keyup", function (key) {
+
+    });
+    */
+
+    $("#password").keyup(function(key) {
+        if(key.keyCode === 13) {
+            login();
+        }
+    });
+});

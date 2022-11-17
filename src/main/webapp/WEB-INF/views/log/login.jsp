@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script src="/js/login.js"></script>
 </head>
 <body>
