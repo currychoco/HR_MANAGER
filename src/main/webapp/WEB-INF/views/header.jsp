@@ -11,6 +11,9 @@
     String id = (String)session.getAttribute("id");
     List<String> grant = (List<String>) session.getAttribute("grant");
 %>
+
+<!--TODO : EL태그로 모두 변환시키기!-->
+
 <header>
     <a href="/"><h1>회사명</h1></a>
     <c:choose>
@@ -29,7 +32,7 @@
         <li><a href="/englishname">영문명 추천</a></li>
         <li><a href="/businesscard">명함 신청</a></li>
         <li><a href="/empinfo">회원 정보</a></li>
-        <c:if test="${grant != null}">
+        <c:if test="${grant.size() != 0 && grant!=null}">
             <li><a href="/manager">관리자 페이지</a></li>
         </c:if>
     </ul>

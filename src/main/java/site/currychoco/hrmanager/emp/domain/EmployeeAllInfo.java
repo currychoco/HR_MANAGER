@@ -2,14 +2,18 @@ package site.currychoco.hrmanager.emp.domain;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
-public class EmployeeAllInfoDto {
+public class EmployeeAllInfo {
+    @Id
     private Long empNo;
     private String empName;
     private String empNameEn;

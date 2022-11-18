@@ -40,7 +40,7 @@ public class AccountController {
             // 로그인 된 계정의 권한 확인하기
             List<String> grantList = accountAuthorityService.getAllGrant(result.getEmpNo());
 
-            if(grantList != null){
+            if(grantList.size() != 0){
                 session.setAttribute("grant", grantList);
             }
         }

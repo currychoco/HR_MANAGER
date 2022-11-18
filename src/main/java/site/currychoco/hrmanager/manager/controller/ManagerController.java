@@ -7,4 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ManagerController {
     @GetMapping("/manager")
     public String manager(){return "manager/managerPage";}
+
+    @GetMapping("/add/employee")
+    public String addEmployee(){return "manager/addEmployee";}
 }

@@ -10,17 +10,121 @@
 <html>
 <head>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
+    <script type="text/javascript">
+        function search(){
+            $('.empInfo').empty(); // 지우기
+            const data = $("#nameOrEmpNo").val();
+
+            $.ajax({
+                url : "/get/name/empno",
+                type : "GET",
+                contentType : "application/json",
+                data : {
+                    data : data
+                }
+            }).done(function(response){
+                const list = response;
+                let htmlText = "";
+                if(response.length === 0){
+                    htmlText=`해당 사원이 존재하지 않습니다.`;
+                }else if(list.length === 1){
+                    list.forEach(emp=>{
+                        htmlText+=`
+                            <table>
+                                <tr>
+                                    <th>사번</th>
+                                    <td>\${emp.empNo}</td>
+                                </tr>
+                                    <th>이름</th>
+                                     <td>\${emp.empName}</td>
+                                </tr>
+                                    <th>영문명</th>
+                                     <td>\${emp.empNameEn}</td>
+                                </tr>
+                                    <th>부서</th>
+                                    <td>\${emp.deptName} </td>
+                                </tr>
+                                    <th>직책</th>
+                                      <td>\${emp.jobName}</td>
+                                </tr>
+                                    <th>직위</th>
+                                     <td>\${emp.positionName}</td>
+                                </tr>
+                                    <th>성별</th>
+                                    <td>\${emp.gender}</td>
+                                </tr>
+                                    <th>이메일</th>
+                                    <td>\${emp.email}</td>
+                                </tr>
+                                    <th>휴대폰 번호</th>
+                                     <td>\${emp.phone}</td>
+                                </tr>
+                                    <th>입사일</th>
+                                    <td>\${emp.startDate}</td>
+                                </tr>
+                                    <th>아이디</th>
+                                    <td>\${emp.id}</td>
+                                </tr>
+                            </table>
+                        `;
+                    })
+                }else{
+                    htmlText +=`
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>사번</th>
+                                    <th>이름</th>
+                                    <th>성별</th>
+                                    <th>부서</th>
+                                    <th>직책</th>
+                                </tr>
+                            </thead>
+                             <tbody>
+                    `;
+
+                    list.forEach(e=>{
+                        htmlText += `
+                            <tr>
+                                <td>\${e.empNo}</td>
+                                <td>\${e.empName}</td>
+                                <td>\${e.gender}</td>
+                                <td>\${e.deptName}</td>
+                                <td>\${e.positionName}</td>
+                            </tr>
+                        `;
+                    });
+
+                    htmlText +=`
+                            </tbody>
+                        </table>
+                    `;
+                }
+
+                $('.empInfo').append(htmlText);
+            }).fail(function(err){
+                console.log(err);
+            });
+        }
+
+        $(document).ready(function (){
+            $("#nameOrEmpNo").keyup(function(key) {
+                if(key.keyCode === 13) {
+                    search();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <section>
-
-        매니저 페이지에는 기본 정보만 출력하고, -> 처음 페이지 이동하면 보인 개인정보 보이게
-        인사 정보 수정권한 있는 사람만 수정 버튼 눌러서 수정할 수 있게, -> 인사정보는 뭘 수정? 부서변경, 직책변경, 직급변경??? 각 정보마다 따로 권한을 둘까, 아니면 부서, 직책, 직급은 같은 권한으로 처리할까...
-         ㄴ 이름 개명했을 때에는? 영어명 바꾸고 싶다고 하면?? -> 기본정보수정은 신청을 받아서 관리자가 수정하는 걸로...계속 개인이 바꾸면 문제 생길 수도 있으니까...
-        연봉 정보는 열람 권한이 있는 사람만 볼 수 있게,
-         ㄴ 연봉 수정은 수정 권한이 있는 사람만 수정할 수 있게,
-        사원 추가 버튼은 해당 권한이 있는 사람만 볼 수 있게,
+        <c:import url="/WEB-INF/views/layout/managerGrantNav.jsp"/>
+        <div class="searchForm">
+            <input type="text" id = "nameOrEmpNo" name="nameOrEmpNo" required>
+            <button onclick="search()">검색</button>
+        </div>
+        <div class = "empInfo"></div>
 
     </section>
 </body>

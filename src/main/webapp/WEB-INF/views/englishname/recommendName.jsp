@@ -13,6 +13,7 @@
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
         function recommend() {
+            $(".recommendedEnglishName").empty();
             const name = $("#name").val();
             $.ajax({
                 type : "GET",
