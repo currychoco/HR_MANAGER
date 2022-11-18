@@ -23,6 +23,6 @@ public class DepartmentController {
     public List<DepartmentDto> getAllDept(){
         List<DepartmentDto> list = departmentService.getAllDept();
         System.out.println("DepartmentController : " + list.toString());
-        return list;
+        return list; //
     }
 }
