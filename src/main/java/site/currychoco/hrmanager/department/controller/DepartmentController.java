@@ -17,6 +17,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    // 수정 필요
     @ResponseBody
     @GetMapping("/department/all")
     public List<DepartmentDto> getAllDept(){
