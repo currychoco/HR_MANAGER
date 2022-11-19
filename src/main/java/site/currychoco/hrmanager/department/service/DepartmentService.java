@@ -25,7 +25,6 @@ public class DepartmentService {
         for(Department dept : deptList){
             dtoList.add(DepartmentDto.fromEntity(dept));
         }
-        System.out.println("DepartmentService : " + dtoList.toString());
         return dtoList;
 
     }

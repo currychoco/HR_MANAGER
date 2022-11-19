@@ -17,8 +17,11 @@ public class EmployeeAllInfo {
     private Long empNo;
     private String empName;
     private String empNameEn;
+    private String deptCode;
     private String deptName;
+    private String jobCode;
     private String jobName;
+    private String positionCode;
     private String positionName;
     private String gender;
     private String email;

@@ -10,17 +10,16 @@
 
 <div class="grantNav">
   <ul>
-    <li><a href="/manager">사원 검색</a></li>
     <c:forEach items="${sessionScope.grant}" var="item">
       <tr>
-        <c:choose>
-          <c:when test="${item.equals('g000000')}">
-            <li><a href="/add/employee">신규 사원 추가</a></li>
-          </c:when>
-          <c:when test="${item.equals('g000001')}">
-            <li>사원 정보 수정</li>
-          </c:when>
-        </c:choose>
+
+        <c:if test="${item.equals('g000000')}">
+          <li><a href="/manager/employee/add">신규 사원 추가</a></li>
+        </c:if>
+        <c:if test="${item.equals('g000002')}">
+          <li><a href="/manager/employee/search">사원 검색</a></li>
+        </c:if>
+
       </tr>
     </c:forEach>
   </ul>

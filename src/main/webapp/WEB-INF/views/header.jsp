@@ -12,28 +12,52 @@
     List<String> grant = (List<String>) session.getAttribute("grant");
 %>
 
-<!--TODO : EL태그로 모두 변환시키기!-->
+<!--TODO : java 에서 처리하기... ㅠ-->
 
 <header>
-    <a href="/"><h1>회사명</h1></a>
-    <c:choose>
-        <c:when test="${id == null}">
-            <a href="/login">로그인</a>
-            <a href="/join">회원가입</a>
-        </c:when>
-        <c:otherwise>
-            <p><b><%=id%></b>님 안녕하세요!</p>
-            <button onclick="logout()">로그아웃</button>
-        </c:otherwise>
-    </c:choose>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">사과회사</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/englishname">영문명 추천</a></li>
+                <li><a href="/businesscard">명함 신청</a></li>
+                <li><a href="/empinfo">회원 정보</a></li>
+                <c:if test="${grant.size() != 0 && grant!=null}">
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        관리자 페이지<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <c:forEach items="${sessionScope.grant}" var="item">
+                            <c:if test="${item.equals('g000000')}">
+                                <li><a href="/manager/employee/add">신규 사원 추가</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000002')}">
+                                <li><a href="/manager/employee/search">사원 검색</a></li>
+                            </c:if>
+                        </c:forEach>
+                    </ul>
+                </li>
+                </c:if>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <c:choose>
+                    <c:when test="${id == null}">
+                        <li><a href="/join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <p style="margin-top:13px;">Hello, <b><%=id%></b></p>
+                        </li>
+                        <li><a href="javascript:logout()"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
+                    </c:otherwise>
+                </c:choose>
+
+            </ul>
+        </div>
+    </nav>
+
 </header>
-<nav>
-    <ul>
-        <li><a href="/englishname">영문명 추천</a></li>
-        <li><a href="/businesscard">명함 신청</a></li>
-        <li><a href="/empinfo">회원 정보</a></li>
-        <c:if test="${grant.size() != 0 && grant!=null}">
-            <li><a href="/manager">관리자 페이지</a></li>
-        </c:if>
-    </ul>
-</nav>

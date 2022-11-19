@@ -5,11 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "employee")
@@ -19,6 +17,7 @@ import java.sql.Timestamp;
 @ToString
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_no")
     private Long empNo;
     @Column(name = "dept_code")
@@ -50,6 +49,17 @@ public class Employee {
         this.gender = dto.getGender();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
-        this.startDate = dto.getStartDate();
+        this.startDate = new Timestamp(new Date().getTime());
+    }
+
+    public void update(EmployeeDto dto) {
+        this.deptCode = dto.getDeptCode();
+        this.jobCode = dto.getJobCode();
+        this.positionCode = dto.getPositionCode();
+        this.empName = dto.getEmpName();
+        this.empNameEn = dto.getEmpNameEn();
+        this.gender = dto.getGender();
+        this.email = dto.getEmail();
+        this.phone = dto.getPhone();
     }
 }

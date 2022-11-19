@@ -13,8 +13,13 @@
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
         function recommend() {
-            $(".recommendedEnglishName").empty();
             const name = $("#name").val();
+
+            if(!name) {
+                alert("영문명을 추천받을 한글명을 입력해 주세요");
+                return;
+            }
+
             $.ajax({
                 type : "GET",
                 url : "/englishname/recommand",
@@ -27,17 +32,6 @@
                 let list = response.aItems;
                 let htmlText = "";
 
-                htmlText += `
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>영문명</th>
-                                <th>사용 빈도</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
                 list.forEach(e => {
                     htmlText += `
                         <tr>
@@ -47,12 +41,7 @@
                     `;
                 });
 
-                htmlText += `
-                        </tbody>
-                    </table>
-                `;
-
-                $('.recommendedEnglishName').append(htmlText);
+                $('#tableBody').html(htmlText);
             }).fail(function(err){
                 console.log(err);
             });
@@ -68,14 +57,30 @@
     </script>
 </head>
 <body>
-  <c:import url="/WEB-INF/views/header.jsp"/>
-  <section>
-      <div>
-          <input type="text" id="name" name = "name" placeholder="이름"/>
-          <button onclick="recommend()">추천</button>
-      </div>
-      <div class = "recommendedEnglishName"></div>
-
-  </section>
+    <c:import url="/WEB-INF/views/header.jsp"/>
+    <div class="container text-center">
+        <form class="form-inline">
+            <input type="text" class="form-control" id="name" name = "name" placeholder="이름" />
+            <button type="button" class="btn btn-primary" onclick="recommend()">추천</button>
+        </form>
+        <div>
+            <table class="table table-hover">
+                <colgroup>
+                    <col style="width:70%" />
+                    <col style="width:30%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>영문명</th>
+                        <th>사용 빈도</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- recommend() 의 데이터가 추가됩니다 -->
+                </tbody>
+            </table>
+        </div>
+        <div class = "recommendedEnglishName"></div>
+    </div>
 </body>
 </html>
