@@ -2,12 +2,9 @@ package site.currychoco.hrmanager.position.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import site.currychoco.hrmanager.position.domain.PositionDto;
 import site.currychoco.hrmanager.position.service.PositionService;
 
@@ -24,6 +21,18 @@ public class PositionController {
     // ---
     @GetMapping("/manager/position/create")
     public String createPosition(){return "manager/position/addPosition";}
+
+    @GetMapping("/manager/position/search")
+    public String searchPosition(){return "manager/position/searchPosition";}
+
+    @GetMapping("/manager/position/detail")
+    public String detailPosition(@RequestParam(name = "positionCode") String positionCode, Model model){
+        PositionDto positionDto = positionService.getPositionByPositionCode(positionCode);
+
+        model.addAttribute("position", positionDto);
+
+        return "manager/position/detailPosition";
+    }
 
 
     // ---
@@ -46,6 +55,25 @@ public class PositionController {
     @GetMapping("/position/all/read")
     public List<PositionDto> getAllPosition(){
         return positionService.getAllPosition();
+    }
+
+    /**
+     * 직급 정보 수정
+     */
+    @ResponseBody
+    @PostMapping("/position/modify")
+    public void modifyPosition(@RequestBody PositionDto positionDto){
+        positionService.modifyPosition(positionDto);
+    }
+
+
+    /**
+     *  직급 검색
+     */
+    @ResponseBody
+    @GetMapping("/position/search")
+    public List<PositionDto> searchPosition(String data){
+        return positionService.getSearchedPosition(data);
     }
 
 }

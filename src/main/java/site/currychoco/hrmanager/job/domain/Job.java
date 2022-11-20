@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import site.currychoco.hrmanager.department.domain.DepartmentDto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,5 +32,11 @@ public class Job {
         this.jobName = jobDto.getJobName();
         this.jobNameEn = jobDto.getJobNameEn();
         this.jobLevel = jobDto.getJobLevel();
+    }
+
+    public void modify(JobDto dto){
+        this.jobName = dto.getJobName();
+        this.jobNameEn = dto.getJobNameEn();
+        this.jobLevel = dto.getJobLevel();
     }
 }

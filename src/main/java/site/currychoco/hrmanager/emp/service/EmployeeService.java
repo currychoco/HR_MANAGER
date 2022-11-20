@@ -1,10 +1,8 @@
 package site.currychoco.hrmanager.emp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.currychoco.hrmanager.account.repository.AccountRepository;
 import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
@@ -77,4 +75,12 @@ public class EmployeeService {
         emp.update(employeeDto);
     }
 
+    /**
+     * 사번으로 사원 정보 출력
+     */
+    public EmployeeDto getEmployeeByEmpNo(Long empNo){
+        Employee employee = employeeRepository.findById(empNo).orElseThrow();
+        EmployeeDto dto = EmployeeDto.fromEntity(employee);
+        return dto;
+    }
 }

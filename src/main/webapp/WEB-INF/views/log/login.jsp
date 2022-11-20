@@ -14,13 +14,19 @@
     <script src="/js/login.js"></script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/header.jsp"/>
-<section>
-    <div>
-        <input type="text" id="id" name="id" placeholder="아이디" required/>
-        <input type="password" id="password" name="password" placeholder="패스워드" required/>
-        <button onclick="login()">로그인</button>
+    <c:import url="/WEB-INF/views/header.jsp"/>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="패스워드" required/>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary btn-block" onclick="login()">로그인</button>
+            </div>
+        </form>
     </div>
-</section>
 </body>
 </html>

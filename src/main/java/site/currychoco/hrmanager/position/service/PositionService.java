@@ -1,8 +1,8 @@
 package site.currychoco.hrmanager.position.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import site.currychoco.hrmanager.position.domain.Position;
 import site.currychoco.hrmanager.position.domain.PositionDto;
 import site.currychoco.hrmanager.position.repository.PositionRepository;
@@ -38,5 +38,38 @@ public class PositionService {
         }
 
         return positionDtoList;
+    }
+
+    /**
+     * 직책 정보 수정
+     */
+    @Transactional
+    public void modifyPosition(PositionDto dto){
+        Position position = positionRepository.findById(dto.getPositionCode()).orElseThrow();
+        position.modify(dto);
+    }
+
+    /**
+     * 직책 정보
+     */
+    public PositionDto getPositionByPositionCode(String positionCode){
+        Position position = positionRepository.findById(positionCode).orElseThrow();
+        PositionDto dto = PositionDto.fromEntity(position);
+        return dto;
+    }
+
+    /**
+     * 직책 검색
+     */
+    public List<PositionDto> getSearchedPosition(String data){
+        List<PositionDto> dtoList = new ArrayList<>();
+
+        List<Position> list = positionRepository.findPositionByPositionCodeOrPositionName(data);
+
+        for(Position position : list){
+            dtoList.add(PositionDto.fromEntity(position));
+        }
+
+        return dtoList;
     }
 }

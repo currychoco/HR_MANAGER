@@ -13,7 +13,7 @@ public class DepartmentDto {
 
     private String deptCode;
     private String upperDeptCode;
-    private Integer headEmpNo;
+    private Long headEmpNo;
     private String deptName;
     private String deptNameEn;
     private int deptLevel;

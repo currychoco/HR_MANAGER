@@ -33,4 +33,10 @@ public class Position {
         this.positionNameEn = positionDto.getPositionNameEn();
         this.positionLevel = positionDto.getPositionLevel();
     }
+
+    public void modify(PositionDto positionDto){
+        this.positionName = positionDto.getPositionName();
+        this.positionNameEn = positionDto.getPositionNameEn();
+        this.positionLevel = positionDto.getPositionLevel();
+    }
 }

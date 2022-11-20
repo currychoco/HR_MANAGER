@@ -1,7 +1,6 @@
 package site.currychoco.hrmanager.job.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.currychoco.hrmanager.job.domain.Job;
@@ -14,8 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class JobService {
-    @Autowired
-    private JobRepository jobRepository;
+
+    private final JobRepository jobRepository;
 
     // create
     public void createJob(JobDto jobDto){
@@ -33,17 +32,37 @@ public class JobService {
         return jobDtoList;
     }
 
-    // update
+    /**
+     * 직책 정보 수정
+     */
     @Transactional
-    public JobDto updateJob(JobDto jobDto){
-        Job job = new Job(jobDto);
-        Job updatedJob = jobRepository.updateJob(job.getJobCode(), job.getJobName(), job.getJobNameEn(), job.getJobLevel());
-        JobDto result = JobDto.fromEntity(updatedJob);
-        return result;
+    public void modifyJob(JobDto dto){
+       Job job = jobRepository.findById(dto.getJobCode()).orElseThrow();
+       job.modify(dto);
     }
 
-    //read
-    public void deleteJobById(String jobCode){
-        jobRepository.deleteById(jobCode);
+    /**
+     * 직책 정보
+     */
+    public JobDto getJobByJobCode(String jobCode){
+        Job job = jobRepository.findById(jobCode).orElseThrow();
+        JobDto dto = JobDto.fromEntity(job);
+        return dto;
     }
+
+    /**
+     * 직책 검색
+     */
+    public List<JobDto> getSearchedJob(String data){
+        List<JobDto> dtoList = new ArrayList<>();
+
+        List<Job> list = jobRepository.findJobByJobCodeOrJobName(data);
+
+        for(Job job : list){
+            dtoList.add(JobDto.fromEntity(job));
+        }
+
+        return dtoList;
+    }
+
 }

@@ -1,10 +1,9 @@
 package site.currychoco.hrmanager.job.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import site.currychoco.hrmanager.job.domain.Job;
 import site.currychoco.hrmanager.job.domain.JobDto;
 import site.currychoco.hrmanager.job.service.JobService;
 
@@ -21,6 +20,18 @@ public class JobController {
     // ---
     @GetMapping("/manager/job/create")
     public String createJob(){return "manager/job/addJob";}
+
+    @GetMapping("/manager/job/search")
+    public String searchJob(){return "manager/job/searchJob";}
+
+    @GetMapping("/manager/job/detail")
+    public String detailJob(@RequestParam(name = "jobCode") String jobCode, Model model){
+        JobDto jobDto = jobService.getJobByJobCode(jobCode);
+
+        model.addAttribute("job", jobDto);
+
+        return "manager/job/detailJob";
+    }
 
     // ---
     // api
@@ -41,18 +52,22 @@ public class JobController {
         return list;
     }
 
-    // update
+    /**
+     * 직책 정보 수정
+     */
     @ResponseBody
-    @PostMapping("/job/update")
-    public boolean updateJob(@RequestBody JobDto jobDto){
-        JobDto result = jobService.updateJob(jobDto);
-        return result != null;
+    @PostMapping("/job/modify")
+    public void modifyJob(@RequestBody JobDto jobDto){
+        jobService.modifyJob(jobDto);
     }
 
-    // delete
+
+    /**
+     *  직책 검색
+     */
     @ResponseBody
-    @PostMapping("/job/delete")
-    public void deleteJobById(String jobCode){
-        jobService.deleteJobById(jobCode);
+    @GetMapping("/job/search")
+    public List<JobDto> searchJob(String data){
+        return jobService.getSearchedJob(data);
     }
 }
