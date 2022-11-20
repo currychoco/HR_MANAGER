@@ -18,11 +18,9 @@ public class JobService {
     private JobRepository jobRepository;
 
     // create
-    public JobDto insertJob(JobDto jobDto){
+    public void createJob(JobDto jobDto){
         Job job = new Job(jobDto);
-        Job insertedJob = jobRepository.save(job);
-        JobDto result = JobDto.fromEntity(insertedJob);
-        return result;
+        jobRepository.save(job);
     }
 
     // read

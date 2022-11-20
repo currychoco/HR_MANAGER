@@ -14,8 +14,7 @@ import java.util.List;
 @Service
 public class DepartmentService {
 
-    @Autowired
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
 
     // 모든 부서 리스트 가져오기
     public List<DepartmentDto> getAllDept(){
@@ -26,6 +25,15 @@ public class DepartmentService {
             dtoList.add(DepartmentDto.fromEntity(dept));
         }
         return dtoList;
-
     }
+
+
+    /**
+     * 새로운 부서 생성
+     */
+    public void addDepartment(DepartmentDto dto){
+        Department department = new Department(dto);
+        departmentRepository.save(department);
+    }
+
 }

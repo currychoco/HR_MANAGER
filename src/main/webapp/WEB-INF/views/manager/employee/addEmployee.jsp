@@ -24,7 +24,7 @@
             const phone = $("#phone").val();
 
             if(!dept || !job || !position || !empName || !empNameEn || !gender || !email || !phone) {
-                alert("빠진거 있음");
+                alert("누락된 내용이 있습니다.");
                 return;
             }
 

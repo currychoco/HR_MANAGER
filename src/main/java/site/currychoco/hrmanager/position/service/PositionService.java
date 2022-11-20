@@ -14,9 +14,19 @@ import java.util.List;
 @Service
 public class PositionService {
 
-    // 모든 직위 정보 불러오기
-    @Autowired
-    private PositionRepository positionRepository;
+    private final PositionRepository positionRepository;
+
+    /**
+     * 직위 생성
+     */
+    public void addPosition(PositionDto dto){
+        Position position = new Position(dto);
+        positionRepository.save(position);
+    }
+
+    /**
+     * 모든 직위 출력
+     */
 
     public List<PositionDto> getAllPosition(){
         List<PositionDto> positionDtoList = new ArrayList<>();
