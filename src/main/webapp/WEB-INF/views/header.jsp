@@ -12,13 +12,11 @@
     List<String> grant = (List<String>) session.getAttribute("grant");
 %>
 
-<!--TODO : java 에서 처리하기... ㅠ-->
-
 <header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">사과회사</a>
+                <a class="navbar-brand" href="/">파인애플</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/englishname">영문명 추천</a></li>
@@ -36,6 +34,27 @@
                             </c:if>
                             <c:if test="${item.equals('g000002')}">
                                 <li><a href="/manager/employee/search">사원 검색</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000003')}">
+                                <li><a href="/manager/department/create">부서 생성</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000004')}">
+                                <li><a href="/manager/job/create">직책 생성</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000005')}">
+                                <li><a href="/manager/position/create">직급 생성</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000009')}">
+                                <li><a href="/manager/authority/grant">권한 부여</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000010')}">
+                                <li><a href="/manager/department/search">부서 검색</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000011')}">
+                                <li><a href="/manager/job/search">직책 검색</a></li>
+                            </c:if>
+                            <c:if test="${item.equals('g000012')}">
+                                <li><a href="/manager/position/search">직급 검색</a></li>
                             </c:if>
                         </c:forEach>
                     </ul>

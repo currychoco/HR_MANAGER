@@ -16,7 +16,9 @@ public class JobService {
 
     private final JobRepository jobRepository;
 
-    // create
+    /**
+     * 직책 추가
+     */
     public void createJob(JobDto jobDto){
         Job job = new Job(jobDto);
         jobRepository.save(job);

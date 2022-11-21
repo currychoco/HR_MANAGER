@@ -67,47 +67,49 @@
                 <input type="text" class="form-control" id="empNo" name="empNo" placeholder="사번" value="${employee.empNo}" readonly>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="empName" name="empName" placeholder="이름" value="${employee.empName}" required>
+                <input type="text" class="form-control" id="empName" name="empName" placeholder="이름" value="${employee.empName}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="empNameEn" name="empNameEn" placeholder="영문명" value="${employee.empNameEn}" required>
+                <input type="text" class="form-control" id="empNameEn" name="empNameEn" placeholder="영문명" value="${employee.empNameEn}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
             <div class="form-group">
-                <select class="form-control" id="gender" name="gender" required>
+                <select class="form-control" id="gender" name="gender" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
                     <option value="M" ${employee.gender == 'M'}>남성</option>
                     <option value="F" ${employee.gender == 'M'}>여성</option>
                 </select>
             </div>
             <div class="form-group">
-                <select class="form-control" id="dept" name="dept" required>
+                <select class="form-control" id="dept" name="dept" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
                     <c:forEach var="dept" items="${departments}">
                         <option value="${dept.deptCode}" ${dept.deptCode == employee.deptCode ? 'selected' : ''}>${dept.deptName}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="form-group">
-                <select class="form-control" id="job" name="job" required>
+                <select class="form-control" id="job" name="job" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
                     <c:forEach var="job" items="${jobs}">
                         <option value="${job.jobCode}" ${job.jobCode == employee.jobCode ? 'selected' : ''}>${job.jobName}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="form-group">
-                <select class="form-control" id="position" name="position" required>
+                <select class="form-control" id="position" name="position" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
                     <c:forEach var="position" items="${positions}">
                         <option value="${position.positionCode}" ${position.positionCode == employee.positionCode ? 'selected' : ''}>${position.positionName}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="${employee.email}" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="${employee.email}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
+            <c:if test="${sessionScope.grant.contains('g000001')}">
             <div class="form-group">
                 <button type="submit" class="btn btn-lg btn-primary btn-block">수정</button>
             </div>
+            </c:if>
         </form>
     </div>
 </body>

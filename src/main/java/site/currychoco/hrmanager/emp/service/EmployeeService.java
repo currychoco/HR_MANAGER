@@ -58,7 +58,9 @@ public class EmployeeService {
         return list;
     }
 
-    // 새로운 사원 추가하기
+    /**
+     * 사원 추가
+     */
     public EmployeeDto addNewEmployee(EmployeeDto employeeDto){
         Employee employee = new Employee(employeeDto);
         Employee insertedEmployee = employeeRepository.save(employee);
