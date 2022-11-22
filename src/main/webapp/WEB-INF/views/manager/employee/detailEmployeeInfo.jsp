@@ -77,9 +77,12 @@
                 <input type="text" class="form-control" id="empNameEn" name="empNameEn" placeholder="영문명" value="${employee.empNameEn}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
             <div class="form-group">
+                <input type="text" class="form-control" id="id" name="id" placeholder="아이디" value="${employee.id != null ? employee.id : '-'}" required readonly>
+            </div>
+            <div class="form-group">
                 <select class="form-control" id="gender" name="gender" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
-                    <option value="M" ${employee.gender == 'M'}>남성</option>
-                    <option value="F" ${employee.gender == 'M'}>여성</option>
+                    <option value="M" <c:if test="${employee.gender == 'M'}">selected</c:if>>남성</option>
+                    <option value="F" <c:if test="${employee.gender == 'F'}">selected</c:if>>여성</option>
                 </select>
             </div>
             <div class="form-group">

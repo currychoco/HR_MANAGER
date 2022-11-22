@@ -131,7 +131,7 @@
           <input type="hidden" id="empNo" value="">
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary btn-block">권한부여</button>
+          <button type="submit" class="btn btn-primary btn-block">권한부여</button>
         </div>
       </form>
     </div>

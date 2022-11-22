@@ -32,5 +32,12 @@ public class AccountService {
         return result;
     }
 
-
+    /**
+     * 사번을 통한 아이디 검색
+     */
+    public AccountDto getAccountByEmpNo(Long empNo){
+        Account account = accountRepository.findById(empNo).orElseThrow();
+        AccountDto dto = AccountDto.fromEntity(account);
+        return dto;
+    }
 }

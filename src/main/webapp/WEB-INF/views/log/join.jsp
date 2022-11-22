@@ -15,11 +15,20 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
-<section>
-    <input type="text" id="empNo" name="empNo" placeholder="사번" required>
-    <input type="text" id="id" name="id" placeholder="아이디" required>
-    <input type="password" id="password" name="password" placeholder="패스워드" required>
-    <button onclick="join()">회원가입</button>
-</section>
+<div class="container">
+    <div class="form-group">
+        <input type="text" class="form-control" id="empNo" name="empNo" placeholder="사번" required>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="password" name="password" placeholder="패스워드" required>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" onclick="join()">회원가입</button>
+    </div>
+
+</div>
 </body>
 </html>

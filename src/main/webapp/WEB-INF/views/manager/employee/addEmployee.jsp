@@ -107,7 +107,7 @@
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" required>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">생성</button>
+                <button type="submit" class="btn btn-primary btn-block">생성</button>
             </div>
         </form>
     </div>

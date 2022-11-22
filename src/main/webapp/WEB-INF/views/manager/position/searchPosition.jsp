@@ -77,8 +77,8 @@
       </colgroup>
       <thead>
       <tr>
-        <th>직책코드</th>
-        <th>직책명</th>
+        <th>직급코드</th>
+        <th>직급명</th>
       </tr>
       </thead>
       <tbody id="positionInfoBody">
