@@ -50,6 +50,10 @@
             });
         }
 
+        function openSalaryPopup() {
+            window.open("/manager/salary/detail?empNo=${employee.empNo}", "salary", "width=600, height=400");
+        }
+
         $(document).ready(function() {
             $("#updateForm").submit(function(e) {
                 e.preventDefault();
@@ -61,7 +65,7 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
 
-    <div>
+    <div class="container">
         <form id="updateForm">
             <div class="form-group">
                 <input type="text" class="form-control" id="empNo" name="empNo" placeholder="사번" value="${employee.empNo}" readonly>
@@ -105,10 +109,18 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
-            <c:if test="${sessionScope.grant.contains('g000001')}">
+            <c:if test="${sessionScope.grant.contains('g000013')}">
+                <div class="form-group" id="salary">
+                    <button type="button" class="btn btn-basic btn-block" onclick="openSalaryPopup()">연봉정보 조회</button>
+                </div>
+            </c:if>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">수정</button>
+                <input type="hidden" id="salaryAmount" value="">
             </div>
+            <c:if test="${sessionScope.grant.contains('g000001')}">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">수정</button>
+                </div>
             </c:if>
         </form>
     </div>

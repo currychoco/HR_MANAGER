@@ -7,10 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-    String id = (String)session.getAttribute("id");
-    List<String> grant = (List<String>) session.getAttribute("grant");
-%>
 
 <header>
     <nav class="navbar navbar-default">
@@ -63,13 +59,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
-                    <c:when test="${id == null}">
+                    <c:when test="${sessionScope.id == null}">
                         <li><a href="/join"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
                         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
                     </c:when>
                     <c:otherwise>
                         <li>
-                            <p style="margin-top:13px;">Hello, <b><%=id%></b></p>
+                            <p style="margin-top:13px;">Hello, <b>${sessionScope.id}</b></p>
                         </li>
                         <li><a href="javascript:logout()"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a></li>
                     </c:otherwise>

@@ -10,9 +10,9 @@
 <html>
 <head>
   <c:import url="/WEB-INF/views/layout/head.jsp"/>
-  <script>
+  <script type="text/javascript">
   function searchEmployee() {
-    const data = $("#empNameOrEmpNo").val();
+    const data = $("#empName").val();
 
     $.ajax({
       url: "/get/name/empno",
@@ -36,6 +36,7 @@
                     <td>\${e.gender == 'M' ? "남" : "여"}</td>
                     <td>\${e.deptName}</td>
                     <td>\${e.positionName}</td>
+                    <td><button type="button" class="btn btn-basic btn-authority" data-emp-no="\${e.empNo}" onclick="selectEmployee(\${e.empNo})">선택</button></td>
                 </tr>
             `;
         });
@@ -48,25 +49,39 @@
   }
 
   function grantAuthority(){
-    const empNo = $("#empNameOrEmpNo").val();
+
+    const empNo = $("#empNo").val();
     const authCode = $("#authority option:selected").val();
+    const empName = $("#empName").val();
+    const authName = $("#authority option:selected").text();
 
     console.log(empNo);
 
-    $.ajax({
-      url : "/account-authority/add",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
-        empNo : empNo,
-        authCode : authCode
-      })
-    }).done(function(response){
-      alert("권한부여 완료:)");
-    }).fail(function(err){
-      alert("권한부여 실패:(");
-    });
+    if(confirm(empName + "(" + empNo + ")에게 " + authName + "권한을 부여하겠습니까?")){
+      $.ajax({
+        url : "/account-authority/add",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+          empNo : empNo,
+          authCode : authCode
+        })
+      }).done(function(response){
+        alert("권한부여 완료:)");
+      }).fail(function(err){
+        alert("권한부여 실패:(");
+      });
+    }
+  }
 
+  function selectEmployee(empNo){
+    $("#empNo").val(empNo);
+    $("#employee").val(empNo);
+
+    $(".btn-authority").removeClass("btn-primary").addClass("btn-basic");
+    $("button[data-emp-no=" + empNo + "]").removeClass("btn-basic").addClass("btn-primary");
+
+    currentSelectedEmpNo = empNo;
   }
 
   $(document).ready(function() {
@@ -74,45 +89,53 @@
       e.preventDefault();
       grantAuthority();
     });
+
   });
 
   </script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/header.jsp"/>
-<div>
-  <form class="container" id="addForm">
-    <div class="form-group">
-      <input type="text" class="form-control" id="empNameOrEmpNo" name="empNameOrEmpNo" placeholder="이름 or 사번" required>
-      <button type="button" class="btn btn-primary" onclick="searchEmployee()">검색</button>
+  <c:import url="/WEB-INF/views/header.jsp"/>
+
+  <div>
+    <div class="container">
+      <form id="addForm">
+        <div class="form-inline">
+          <div class="form-group">
+            <input type="text" class="form-control" id="empName" name="empName" placeholder="사원명" required>
+            <button type="button" class="btn btn-primary" onclick="searchEmployee()">검색</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <table class="table">
+            <thead id="empInfoHead">
+            <tr>
+              <th>사번</th>
+              <th>이름</th>
+              <th>성별</th>
+              <th>부서</th>
+              <th>직책</th>
+            </tr>
+            </thead>
+            <tbody id="empInfoBody">
+            <!--검색된 사원 리스트 출력-->
+            </tbody>
+          </table>
+        </div>
+        <div class="form-group">
+          <select class="form-control" id="authority" name="authority">
+            <c:forEach items="${authList}" var="item">
+              <option value="${item.authCode}">${item.authName}</option>
+            </c:forEach>
+          </select>
+          <input type="hidden" id="empNo" value="">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-primary btn-block">권한부여</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <table>
-        <thead id="empInfoHead">
-          <tr>
-            <th>사번</th>
-            <th>이름</th>
-            <th>성별</th>
-            <th>부서</th>
-            <th>직책</th>
-          </tr>
-        </thead>
-        <tbody id="empInfoBody">
-          <!--검색된 사원 리스트 출력-->
-        </tbody>
-      </table>
-    </div>
-    <div class="form-group">
-      <select class="form-control" id="authority" name="authority">
-        <c:forEach items="${authList}" var="item">
-          <option value="${item.authCode}">${item.authName}</option>
-        </c:forEach>
-      </select>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-lg btn-primary btn-block">권한부여</button>
-    </div>
-  </form>
-</div>
+  </div>
+
 </body>
 </html>

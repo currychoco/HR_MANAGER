@@ -17,6 +17,9 @@ public class SalaryDto {
     private Long empNo;
     private long amount;
 
+    public SalaryDto(SalaryDto salaryDto) {
+    }
+
     public static SalaryDto fromEntity(Salary salary){
         if(salary == null){
             return null;

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.department.domain.DepartmentDto;
 import site.currychoco.hrmanager.department.service.DepartmentService;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
@@ -99,6 +100,7 @@ public class EmployeeController {
     }
 
     // 새로운 사번 추가
+    @CheckAuthority(authCode = "g000000")
     @ResponseBody
     @PostMapping("/employee/add")
     public boolean addNemEmployee(@RequestBody EmployeeDto employeeDto){

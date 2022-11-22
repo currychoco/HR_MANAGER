@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import site.currychoco.hrmanager.job.domain.JobDto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "account_authority")
+@Table(name = "salary")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -26,5 +27,9 @@ public class Salary {
     public Salary(SalaryDto salaryDto){
         this.empNo = salaryDto.getEmpNo();
         this.amount = salaryDto.getAmount();
+    }
+
+    public void modify(SalaryDto dto){
+        this.amount = dto.getAmount();
     }
 }
