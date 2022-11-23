@@ -21,11 +21,6 @@ public class HomeController {
         return "log/join";
     }
 
-    @GetMapping("/businesscard")
-    public String application(){
-        return "businesscard/applicationCard";
-    }
-
     @GetMapping("/empinfo")
     public String userInfo(){return "employee/empInfo";}
 

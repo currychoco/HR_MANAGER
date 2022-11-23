@@ -11,11 +11,24 @@
 <head>
     <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
+    <style>
+        img.busicard {
+            width: 540px;
+            height: 300px;
+            border:solid black 1px;
+        }
+    </style>
 </head>
 <body>
-<c:import url="/WEB-INF/views/header.jsp"/>
-<section>
-    카드신청화면
-</section>
+    <c:import url="/WEB-INF/views/header.jsp"/>
+    <div class="container">
+        카드신청화면
+
+        <div class="card">
+            <img src="/business-card/image?cardType=ko" class="busicard" />
+            <img src="/business-card/image?cardType=en" class="busicard" />
+        </div>
+
+    </div>
 </body>
 </html>

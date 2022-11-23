@@ -16,7 +16,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/englishname">영문명 추천</a></li>
-                <li><a href="/businesscard">명함 신청</a></li>
+                <li><a href="/business-card">명함 신청</a></li>
                 <li><a href="/empinfo">회원 정보</a></li>
                 <c:if test="${grant.size() != 0 && grant!=null}">
                 <li class="dropdown">

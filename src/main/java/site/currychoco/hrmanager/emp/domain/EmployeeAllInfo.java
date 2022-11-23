@@ -19,10 +19,13 @@ public class EmployeeAllInfo {
     private String empNameEn;
     private String deptCode;
     private String deptName;
+    private String deptNameEn;
     private String jobCode;
     private String jobName;
+    private String jobNameEn;
     private String positionCode;
     private String positionName;
+    private String positionNameEn;
     private String gender;
     private String email;
     private String phone;

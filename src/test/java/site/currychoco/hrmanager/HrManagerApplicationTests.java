@@ -3,6 +3,7 @@ package site.currychoco.hrmanager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ResourceUtils;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.service.EmployeeService;
 import site.currychoco.hrmanager.trdparty.naver.romanization.domain.RomanizationDto;
@@ -42,7 +43,7 @@ class HrManagerApplicationTests {
 
         try {
             final String fontName = "맑은 고딕";
-            BufferedImage cardImg = ImageIO.read(new File(STORAGE_PATH + "/template/card_ko.png"));
+            BufferedImage cardImg = ImageIO.read(ResourceUtils.getFile("classpath:static/image/card_template/card_ko.png"));
             BufferedImage nameImg = this.convertTextToBufferedImage(empInfo.getEmpName(), new Font(fontName, Font.PLAIN, 42), Color.BLACK);
             BufferedImage deptImg = this.convertTextToBufferedImage(empInfo.getDeptName(), new Font(fontName, Font.PLAIN, 18), Color.BLACK);
             BufferedImage jobImg = this.convertTextToBufferedImage(empInfo.getJobName(), new Font(fontName, Font.PLAIN, 18), Color.BLACK);
