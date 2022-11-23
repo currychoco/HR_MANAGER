@@ -12,12 +12,15 @@
     <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
+        let empNo;
+
         $.ajax({
             url : "/get/employee/all/info",
             type : "GET",
             dataType : "json",
         }).done(function(response){
             const emp = response;
+            empNo = emp.empNo;
             let htmlText=`
                     <tr>
                         <th>사번</th>
@@ -70,14 +73,24 @@
         }).fail(function(err){
             console.log(err);
         });
+
+        function modifyOwnInfo(){
+            location.href="/home/employee/modify?empNo=${empNo}";
+        }
     </script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container">
-        <table class="table table-hover">
-            <tbody id="empInfo"></tbody>
-        </table>
+        <div class="form-group">
+            <table class="table table-hover">
+                <tbody id="empInfo"></tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" onclick="modifyOwnInfo()">수정요청</button>
+        </div>
     </div>
+
 </body>
 </html>

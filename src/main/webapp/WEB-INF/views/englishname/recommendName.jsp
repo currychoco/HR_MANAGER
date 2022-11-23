@@ -28,7 +28,7 @@
                     korName : name
                 }
             }).done(function(response){
-                console.log(response.aItems);
+                console.log(response);
                 let list = response.aItems;
                 let htmlText = "";
 

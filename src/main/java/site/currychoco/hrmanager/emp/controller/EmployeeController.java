@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.department.domain.DepartmentDto;
 import site.currychoco.hrmanager.department.service.DepartmentService;
+import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
 import site.currychoco.hrmanager.emp.service.EmployeeService;
@@ -65,6 +66,13 @@ public class EmployeeController {
         model.addAttribute("positions", positions);
 
         return "manager/employee/detailEmployeeInfo";
+    }
+
+    @GetMapping("/home/employee/modify")
+    public String modifyOwnInfo(@RequestParam Long empNo, Model model){
+        EmployeeDto employeeDto = employeeService.getEmployeeByEmpNo(empNo);
+        model.addAttribute("employee", employeeDto);
+        return "employee/modifyEmpInfo";
     }
 
     // ---

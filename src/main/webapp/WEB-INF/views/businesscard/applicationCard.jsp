@@ -22,13 +22,13 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container">
-        카드신청화면
-
-        <div class="card">
+        <div class="card form-group">
             <img src="/business-card/image?cardType=ko" class="busicard" />
             <img src="/business-card/image?cardType=en" class="busicard" />
         </div>
-
+        <div class="form-group">
+            <button type="button" class="btn btn-primary btn-block">신청</button>
+        </div>
     </div>
 </body>
 </html>
