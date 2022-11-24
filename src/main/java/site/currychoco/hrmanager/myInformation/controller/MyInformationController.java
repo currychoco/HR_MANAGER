@@ -43,6 +43,7 @@ public class MyInformationController {
     @PostMapping("/my-info/create")
     public void createOwnInfo(@RequestBody MyInformationDto dto){
         dto.setRequestDate(new Timestamp(System.currentTimeMillis()));
+        dto.setAllow("r");
         myInformationService.saveOwnInfo(dto);
     }
 

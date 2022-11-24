@@ -9,11 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
+        recommend()
+
         function recommend() {
-            const name = $("#name").val();
+            const name = '<c:out value="${param.empName}"/>';
 
             if(!name) {
                 alert("영문명을 추천받을 한글명을 입력해 주세요");
@@ -35,7 +36,7 @@
                 list.forEach(e => {
                     htmlText += `
                         <tr>
-                            <td>\${e.name}</td>
+                            <td><a href="javascript:select('\${e.name}')">\${e.name}</a></td>
                             <td>\${e.score}</td>
                         </tr>
                     `;
@@ -45,6 +46,11 @@
             }).fail(function(err){
                 console.log(err);
             });
+        }
+
+        function select(name){
+            window.opener.document.getElementById("empNameEn").value= name;
+            close();
         }
 
         $(document).ready(function (){
@@ -57,12 +63,7 @@
     </script>
 </head>
 <body>
-    <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container text-center">
-        <form class="form-inline">
-            <input type="text" class="form-control" id="name" name = "name" placeholder="이름" />
-            <button type="button" class="btn btn-primary" onclick="recommend()">추천</button>
-        </form>
         <div>
             <table class="table table-hover">
                 <colgroup>

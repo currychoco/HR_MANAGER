@@ -57,6 +57,11 @@
       });
     }
 
+    function openEnNameRecommend() {
+      window.name = "parentForm";
+      window.open("/englishname?empName=${employee.empName}", "enName", "width=600, height=400");
+    }
+
     $(document).ready(function() {
       $("#updateForm").submit(function(e) {
         e.preventDefault();
@@ -72,22 +77,23 @@
   <form id="updateForm">
     <div class="form-group">
       <input type="hidden" id="empNo" name="empNo" value="${employee.empNo}">
-      <input type="text" class="form-control" id="empName" name="empName" placeholder="이름" value="${employee.empName}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
+      <input type="text" class="form-control" id="empName" name="empName" placeholder="이름" value="${employee.empName}" required >
+    </div>
+    <div class="form-group form-inline">
+      <input type="text" class="form-control" id="empNameEn" name="empNameEn" placeholder="영문명" value="${employee.empNameEn}" required>
+      <button type="button" class="btn btn-primary" onclick="openEnNameRecommend()">영문명 추천</button>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="empNameEn" name="empNameEn" placeholder="영문명" value="${employee.empNameEn}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
-    </div>
-    <div class="form-group">
-      <select class="form-control" id="gender" name="gender" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
+      <select class="form-control" id="gender" name="gender" required>
         <option value="M" <c:if test="${employee.gender == 'M'}">selected</c:if>>남성</option>
         <option value="F" <c:if test="${employee.gender == 'F'}">selected</c:if>>여성</option>
       </select>
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="${employee.email}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
+      <input type="email" class="form-control" id="email" name="email" placeholder="이메일" value="${employee.email}" required>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
+      <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block">수정요청</button>
