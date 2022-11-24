@@ -43,7 +43,7 @@ public class MyInformationController {
     @PostMapping("/my-info/create")
     public void createOwnInfo(@RequestBody MyInformationDto dto){
         dto.setRequestDate(new Timestamp(System.currentTimeMillis()));
-        dto.setAllow("r");
+        dto.setAllow("R");
         myInformationService.saveOwnInfo(dto);
     }
 
@@ -58,7 +58,7 @@ public class MyInformationController {
     @PostMapping("/allow/update")
     public void updateAllow(@RequestBody MyInformationDto dto){
         MyInformationDto myInfoDto = myInformationService.getMyInformation(dto.getNo());
-        dto.setAllow("y");
+        dto.setAllow("Y");
         dto.setRequestDate(myInfoDto.getRequestDate());
         dto.setAllowDate(new Timestamp(System.currentTimeMillis()));
         myInformationService.allowModify(dto);

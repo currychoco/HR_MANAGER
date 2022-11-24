@@ -1,4 +1,4 @@
-package site.currychoco.hrmanager.myInformation.domain;
+package site.currychoco.hrmanager.businesscard.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "my_information")
+@Table(name = "busi_card")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString
-public class MyInformation {
+public class BusiCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="no")
@@ -25,25 +25,40 @@ public class MyInformation {
     private String empName;
     @Column(name="emp_name_en")
     private String empNameEn;
-    @Column(name="gender")
-    private String gender;
-    @Column(name="email")
+    @Column(name="dept_name")
+    private String deptName;
+    @Column(name="dept_name_en")
+    private String deptNameEn;
+    @Column(name = "job_name")
+    private String jobName;
+    @Column(name = "job_name_en")
+    private String jobNameEn;
+    @Column(name = "position_name")
+    private String positionName;
+    @Column(name = "position_name_en")
+    private String positionNameEn;
+    @Column(name = "email")
     private String email;
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
-    @Column(name="allow")
+    @Column(name = "allow")
     private String allow;
     @Column(name="request_date")
     private Timestamp requestDate;
     @Column(name="allow_date")
     private Timestamp allowDate;
 
-    public MyInformation(MyInformationDto dto){
+    public BusiCard(BusiCardDto dto){
         this.no = dto.getNo();
         this.empNo = dto.getEmpNo();
         this.empName = dto.getEmpName();
         this.empNameEn = dto.getEmpNameEn();
-        this.gender = dto.getGender();
+        this.deptName = dto.getDeptName();
+        this.deptNameEn = dto.getDeptNameEn();
+        this.jobName = dto.getJobName();
+        this.jobNameEn = dto.getJobNameEn();
+        this.positionName = dto.getPositionName();
+        this.positionNameEn = dto.getPositionNameEn();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
         this.allow = dto.getAllow();
@@ -51,12 +66,17 @@ public class MyInformation {
         this.allowDate = dto.getAllowDate();
     }
 
-    public void modify(MyInformationDto dto){
+    public void modify(BusiCardDto dto){
         this.no = dto.getNo();
         this.empNo = dto.getEmpNo();
         this.empName = dto.getEmpName();
         this.empNameEn = dto.getEmpNameEn();
-        this.gender = dto.getGender();
+        this.deptName = dto.getDeptName();
+        this.deptNameEn = dto.getDeptNameEn();
+        this.jobName = dto.getJobName();
+        this.jobNameEn = dto.getJobNameEn();
+        this.positionName = dto.getPositionName();
+        this.positionNameEn = dto.getPositionNameEn();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
         this.allow = dto.getAllow();

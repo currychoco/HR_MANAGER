@@ -1,10 +1,14 @@
 package site.currychoco.hrmanager.businesscard.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 import org.springframework.util.StreamUtils;
+import site.currychoco.hrmanager.businesscard.domain.BusiCard;
+import site.currychoco.hrmanager.businesscard.domain.BusiCardDto;
+import site.currychoco.hrmanager.businesscard.repository.BusiCardRepository;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.repository.EmployeeAllInfoRepository;
 
@@ -15,6 +19,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +29,9 @@ public class BusinessCardService {
 
     private final EmployeeAllInfoRepository employeeAllInfoRepository;
 
-    private final String BUSINESS_CARD_FONT_NAME = "맑은 고딕";
+    private final BusiCardRepository busiCardRepository;
+
+    private final String BUSINESS_CARD_FONT_NAME = "NanumGothic";
 
     public void responseBusinessCardImage(long empNo, String cardType, HttpServletResponse res) {
 
@@ -53,7 +62,7 @@ public class BusinessCardService {
     private BufferedImage createImage(EmployeeAllInfo empInfo, String cardType) {
 
         try {
-            BufferedImage cardImg = ImageIO.read(ResourceUtils.getFile("classpath:static/image/card_template/card_" + cardType + ".png"));
+            BufferedImage cardImg = ImageIO.read(new ClassPathResource("static/image/card_template/card_" + cardType + ".png").getInputStream());
 
             String empName = "ko".equals(cardType) ? empInfo.getEmpName() : empInfo.getEmpNameEn();
             String deptName = "ko".equals(cardType) ? empInfo.getDeptName() : empInfo.getDeptNameEn();
@@ -125,5 +134,23 @@ public class BusinessCardService {
         }
 
         return image;
+    }
+
+    /**
+     * 명함 신청
+     */
+    public void requestBusiCard(BusiCardDto dto){
+        BusiCard busiCard = new BusiCard(dto);
+        busiCardRepository.save(busiCard);
+    }
+
+    /**
+     * 명함 신청 리스트
+     */
+    public List<BusiCardDto> getBusiList(){
+
+        return busiCardRepository.findAll(Sort.by(Sort.Direction.DESC, "no")).stream()
+                .map(n -> BusiCardDto.fromEntity(n))
+                .collect(Collectors.toList());
     }
 }

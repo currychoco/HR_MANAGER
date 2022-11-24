@@ -3,16 +3,15 @@ package site.currychoco.hrmanager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.service.EmployeeService;
-import site.currychoco.hrmanager.trdparty.naver.romanization.domain.RomanizationDto;
-import site.currychoco.hrmanager.trdparty.naver.romanization.service.RomanizationService;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.sql.Timestamp;
 
 @SpringBootTest
 class HrManagerApplicationTests {
@@ -21,6 +20,13 @@ class HrManagerApplicationTests {
     EmployeeService employeeService;
 
     final String STORAGE_PATH = "c:/storages/HR_MANAGER";
+
+    @Test
+    void Timestamp_테스트() {
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp.toString());
+    }
 
     @Test
     void 명함출력_테스트() {
@@ -42,8 +48,8 @@ class HrManagerApplicationTests {
         }
 
         try {
-            final String fontName = "맑은 고딕";
-            BufferedImage cardImg = ImageIO.read(ResourceUtils.getFile("classpath:static/image/card_template/card_ko.png"));
+            final String fontName = "NanumGothic";
+            BufferedImage cardImg = ImageIO.read(new ClassPathResource("static/image/card_template/card_ko.png").getInputStream());
             BufferedImage nameImg = this.convertTextToBufferedImage(empInfo.getEmpName(), new Font(fontName, Font.PLAIN, 42), Color.BLACK);
             BufferedImage deptImg = this.convertTextToBufferedImage(empInfo.getDeptName(), new Font(fontName, Font.PLAIN, 18), Color.BLACK);
             BufferedImage jobImg = this.convertTextToBufferedImage(empInfo.getJobName(), new Font(fontName, Font.PLAIN, 18), Color.BLACK);

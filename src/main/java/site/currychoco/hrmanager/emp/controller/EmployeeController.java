@@ -37,6 +37,7 @@ public class EmployeeController {
     // page
     // ---
 
+    @CheckAuthority(authCode = "g000000")
     @GetMapping("/manager/employee/add")
     public String addEmployee(Model model){
         List<DepartmentDto> departments = departmentService.getAllDept();
@@ -50,9 +51,11 @@ public class EmployeeController {
         return "manager/employee/addEmployee";
     }
 
+    @CheckAuthority(authCode = "g000002")
     @GetMapping("/manager/employee/search")
     public String employeeSearch(){return "manager/employee/employeeSearch";}
 
+    @CheckAuthority(authCode = "g000002")
     @GetMapping("/manager/employee/detail")
     public String employeeDetail(@RequestParam(name = "empNo") Long empNo, Model model){
         EmployeeAllInfo employee = employeeService.getEmpInfoByEmpNo(empNo);
@@ -68,10 +71,11 @@ public class EmployeeController {
         return "manager/employee/detailEmployeeInfo";
     }
 
+    @CheckAuthority(authCode = "g000001")
     @GetMapping("/home/employee/modify")
     public String modifyOwnInfo(@RequestParam Long empNo, Model model){
-        EmployeeDto employeeDto = employeeService.getEmployeeByEmpNo(empNo);
-        model.addAttribute("employee", employeeDto);
+        EmployeeAllInfo employeeAllInfo = employeeService.getEmpInfoByEmpNo(empNo);
+        model.addAttribute("employee", employeeAllInfo);
         return "employee/modifyEmpInfo";
     }
 
@@ -91,6 +95,7 @@ public class EmployeeController {
     }
 
     // 사번이나 이름 받기 -> 사번인지 이름인지 확인하기
+    @CheckAuthority(authCode = "g000002")
     @ResponseBody
     @GetMapping("/get/name/empno")
     public List<EmployeeAllInfo> getAllInfo(@RequestParam String data){
@@ -108,7 +113,7 @@ public class EmployeeController {
     }
 
     // 새로운 사번 추가
-    @CheckAuthority(authCode = "g000000")
+    @CheckAuthority(authCode = "g000002")
     @ResponseBody
     @PostMapping("/employee/add")
     public boolean addNemEmployee(@RequestBody EmployeeDto employeeDto){
@@ -118,6 +123,7 @@ public class EmployeeController {
         return dto != null;
     }
 
+    @CheckAuthority(authCode = "g000001")
     @ResponseBody
     @PostMapping("/employee/update")
     public void updateEmployee(@RequestBody EmployeeDto employeeDto) {

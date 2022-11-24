@@ -50,7 +50,7 @@
                     alert("생성실패");
                 }
             }).fail(function(err){
-
+                err.responseJSON && alert(err.responseJSON.message);
             });
         }
 
