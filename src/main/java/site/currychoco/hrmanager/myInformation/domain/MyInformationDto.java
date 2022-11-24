@@ -1,11 +1,6 @@
-package site.currychoco.hrmanager.ownInformation.domain;
+package site.currychoco.hrmanager.myInformation.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import site.currychoco.hrmanager.position.domain.Position;
-import site.currychoco.hrmanager.position.domain.PositionDto;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -13,8 +8,9 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @ToString
-public class OwnInformationDto {
+public class MyInformationDto {
 
     private Long no;
     private Long empNo;
@@ -23,19 +19,15 @@ public class OwnInformationDto {
     private String gender;
     private String email;
     private String phone;
-    private boolean allow;
+    private String allow;
     private Timestamp requestDate;
     private Timestamp allowDate;
 
-    public boolean getAllow() {
-        return allow;
-    }
-
-    public static OwnInformationDto fromEntity(OwnInformation ownInfo){
+    public static MyInformationDto fromEntity(MyInformation ownInfo){
         if(ownInfo == null){
             return null;
         }
-        return new OwnInformationDto(
+        return new MyInformationDto(
             ownInfo.getNo(),
             ownInfo.getEmpNo(),
             ownInfo.getEmpName(),

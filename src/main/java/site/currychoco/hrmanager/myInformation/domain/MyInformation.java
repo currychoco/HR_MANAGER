@@ -1,20 +1,21 @@
-package site.currychoco.hrmanager.ownInformation.domain;
+package site.currychoco.hrmanager.myInformation.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import site.currychoco.hrmanager.position.domain.PositionDto;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "own_information")
+@Table(name = "my_information")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString
-public class OwnInformation {
+public class MyInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="no")
@@ -32,13 +33,13 @@ public class OwnInformation {
     @Column(name="phone")
     private String phone;
     @Column(name="allow")
-    private boolean allow;
+    private String allow;
     @Column(name="request_date")
     private Timestamp requestDate;
     @Column(name="allow_date")
     private Timestamp allowDate;
 
-    public OwnInformation(OwnInformationDto dto){
+    public MyInformation(MyInformationDto dto){
         this.no = dto.getNo();
         this.empNo = dto.getEmpNo();
         this.empName = dto.getEmpName();
@@ -51,7 +52,16 @@ public class OwnInformation {
         this.allowDate = dto.getAllowDate();
     }
 
-    public boolean getAllow() {
-        return this.allow;
+    public void modify(MyInformationDto dto){
+        this.no = dto.getNo();
+        this.empNo = dto.getEmpNo();
+        this.empName = dto.getEmpName();
+        this.empNameEn = dto.getEmpNameEn();
+        this.gender = dto.getGender();
+        this.email = dto.getEmail();
+        this.phone = dto.getPhone();
+        this.allow = dto.getAllow();
+        this.requestDate = dto.getRequestDate();
+        this.allowDate = dto.getAllowDate();
     }
 }

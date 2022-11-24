@@ -52,6 +52,9 @@
                             <c:if test="${item.equals('g000012')}">
                                 <li><a href="/manager/position/search">직급 검색</a></li>
                             </c:if>
+                            <c:if test="${item.equals('g000015')}">
+                                <li><a href="/manager/allow/list">수정 신청 허가</a></li>
+                            </c:if>
                         </c:forEach>
                     </ul>
                 </li>

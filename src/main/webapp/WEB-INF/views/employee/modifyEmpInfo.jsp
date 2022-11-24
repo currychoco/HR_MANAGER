@@ -38,8 +38,9 @@
       }
 
       $.ajax({
-        url : "/own-info/create",
+        url : "/my-info/create",
         type : "POST",
+        contentType : "application/json",
         data : JSON.stringify({
           empNo : empNo,
           empName : empName,
@@ -49,14 +50,11 @@
           phone : phone
         })
       }).done(function(response){
-        alert("회원 정보 수정이 완료되었습니다 :)");
+        console.log(response);
+        alert("신청이 완료되었습니다")
       }).fail(function(err){
-        alert("회원 정보 수정에 실패했습니다 :(");
+        console.log(err);
       });
-    }
-
-    function openSalaryPopup() {
-      window.open("/manager/salary/detail?empNo=${employee.empNo}", "salary", "width=600, height=400");
     }
 
     $(document).ready(function() {

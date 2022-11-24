@@ -1,9 +1,7 @@
 package site.currychoco.hrmanager.emp.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import site.currychoco.hrmanager.position.domain.PositionDto;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -12,6 +10,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @ToString
 public class EmployeeDto {
 
