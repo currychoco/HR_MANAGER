@@ -1,6 +1,7 @@
 package site.currychoco.hrmanager.myInformation.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.currychoco.hrmanager.myInformation.domain.MyInformation;
@@ -29,7 +30,7 @@ public class MyInformationService {
      */
     public List<MyInformationDto> getAllowList(){
         List<MyInformationDto> dtoList = new ArrayList<>();
-        List<MyInformation> list = myInformationRepository.findAll();
+        List<MyInformation> list = myInformationRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
         for(MyInformation info : list){
             dtoList.add(MyInformationDto.fromEntity(info));
         }
