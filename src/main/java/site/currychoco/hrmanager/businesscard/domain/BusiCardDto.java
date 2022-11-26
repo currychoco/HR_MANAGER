@@ -1,9 +1,6 @@
 package site.currychoco.hrmanager.businesscard.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 
 import java.sql.Timestamp;
@@ -11,6 +8,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @ToString
 public class BusiCardDto {
     private Long no;

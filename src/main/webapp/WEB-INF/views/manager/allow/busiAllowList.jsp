@@ -26,7 +26,7 @@
                     htmlText += `
               <tr>
                   <td>\${e.no}</td>
-                  <td><a href="/manager/allow/detail?no=\${e.no}&empNo=\${e.empNo}">\${e.empNo}</a></td>
+                  <td><a href="/manager/allow/busi-detail?no=\${e.no}&empNo=\${e.empNo}">\${e.empNo}</a></td>
                   <td>\${e.empName}</td>
                   <td>\${e.allow}</td>
                   <td>\${e.requestDate}</td>
@@ -37,7 +37,7 @@
 
                 $('#tableBody').html(htmlText);
             }).fail(function(err){
-                console.log(err);
+                err.responseJSON && alert(err.responseJSON.message);
             });
         }
 

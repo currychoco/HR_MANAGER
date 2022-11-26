@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.department.domain.DepartmentDto;
 import site.currychoco.hrmanager.department.service.DepartmentService;
 import site.currychoco.hrmanager.emp.service.EmployeeService;
@@ -21,12 +22,15 @@ public class DepartmentController {
     // ---
     // page
     // ---
+    @CheckAuthority(authCode = "g000003")
     @GetMapping("/manager/department/create")
     public String createDepartment(){return "manager/department/addDepartment";}
 
+    @CheckAuthority(authCode = "g000010")
     @GetMapping("/manager/department/search")
     public String searchDepartment(){return "manager/department/searchDepartment";}
 
+    @CheckAuthority(authCode = "g000010")
     @GetMapping("/manager/department/detail")
     public String detailDepartment(@RequestParam(name = "deptCode") String deptCode, Model model){
 
@@ -44,6 +48,7 @@ public class DepartmentController {
     /**
      * 새로운 부서 생성
      */
+    @CheckAuthority(authCode = "g000003")
     @ResponseBody
     @PostMapping("/department/add")
     public void addDepartment(@RequestBody DepartmentDto dto){
@@ -64,6 +69,7 @@ public class DepartmentController {
     /**
      * 부서명 or 부서코드에 포함되는 정보 출력
      */
+    @CheckAuthority(authCode = "g000010")
     @ResponseBody
     @GetMapping("/department/search")
     public List<DepartmentDto> getAllInfo(@RequestParam String data){
@@ -76,6 +82,7 @@ public class DepartmentController {
     /**
      *  부서 정보 수정
      */
+    @CheckAuthority(authCode = "g000006")
     @ResponseBody
     @PostMapping("/department/modify")
     public void modifyDepartment(@RequestBody DepartmentDto dto){

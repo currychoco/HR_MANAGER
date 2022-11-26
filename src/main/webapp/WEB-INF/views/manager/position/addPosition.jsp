@@ -37,7 +37,7 @@
                 location.reload();
             }).fail(function(err){
                 console.log(err);
-                alert("직급 생성 실패");
+                err.responseJSON && alert(err.responseJSON.message);
             });
         }
 

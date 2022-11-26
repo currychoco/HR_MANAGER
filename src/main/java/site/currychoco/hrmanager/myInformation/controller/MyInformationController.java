@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
 import site.currychoco.hrmanager.emp.service.EmployeeService;
 import site.currychoco.hrmanager.myInformation.domain.MyInformationDto;
@@ -23,9 +24,11 @@ public class MyInformationController {
     // ---
     // page
     // ---
+    @CheckAuthority(authCode = "g000015")
     @GetMapping("/manager/allow/list")
     public String allowList(){return "manager/allow/allowList";}
 
+    @CheckAuthority(authCode = "g000015")
     @GetMapping("/manager/allow/detail")
     public String detailAllow(@RequestParam Long no, @RequestParam Long empNo, Model model){
         EmployeeDto empDto = employeeService.getEmployeeByEmpNo(empNo);
@@ -47,6 +50,7 @@ public class MyInformationController {
         myInformationService.saveOwnInfo(dto);
     }
 
+    @CheckAuthority(authCode = "g000015")
     @ResponseBody
     @GetMapping("/allow/list")
     public List<MyInformationDto> getAllowList(){
@@ -54,6 +58,7 @@ public class MyInformationController {
         return list;
     }
 
+    @CheckAuthority(authCode = "g000015")
     @ResponseBody
     @PostMapping("/allow/update")
     public void updateAllow(@RequestBody MyInformationDto dto){

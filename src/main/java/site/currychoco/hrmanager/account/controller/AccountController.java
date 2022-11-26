@@ -2,10 +2,7 @@ package site.currychoco.hrmanager.account.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import site.currychoco.hrmanager.account.domain.Account;
 import site.currychoco.hrmanager.account.domain.AccountDto;
 import site.currychoco.hrmanager.account.service.AccountService;
@@ -63,6 +60,24 @@ public class AccountController {
         AccountDto dto = AccountDto.fromEntity(account);
         AccountDto result = accountService.join(dto);
         return result != null;
+    }
+
+    /**
+     * 인증 번호 이메일 전송
+     */
+    @ResponseBody
+    @PostMapping("/account/send-identification-email")
+    public void sendIdentificationEmail(@RequestParam(name = "empNo") long empNo) {
+        accountService.sendIdentificationEmail(empNo);
+    }
+
+    /**
+     * 입력한 키가 맞는지 확인
+     */
+    @ResponseBody
+    @GetMapping("/account/validate-identification-email")
+    public boolean checkIdentificationEmail(@RequestParam(name = "empNo") long empNo, @RequestParam(name = "key") String key) {
+        return accountService.validateIdentificationEmail(empNo, key);
     }
 
     // 로그아웃

@@ -69,7 +69,7 @@
       }).done(function(response){
         alert("권한부여 완료:)");
       }).fail(function(err){
-        alert("권한부여 실패:(");
+        err.responseJSON && alert(err.responseJSON.message);
       });
     }
   }

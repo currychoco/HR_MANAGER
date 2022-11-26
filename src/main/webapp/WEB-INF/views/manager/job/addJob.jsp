@@ -36,8 +36,7 @@
         alert("직책 생성 성공")
         location.reload();
       }).fail(function(err){
-        console.log(err);
-        alert("직책 생성 실패");
+        err.responseJSON && alert(err.responseJSON.message);
       });
     }
 

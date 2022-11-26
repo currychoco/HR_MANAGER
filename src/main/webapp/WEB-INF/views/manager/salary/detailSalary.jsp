@@ -15,30 +15,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script type="text/javascript">
 
-        /*
-        $( function() {
-            var empInfos = [
-                {
-                    value: "전우치",
-                    empNo: "10005"
-                },
-                {
-                    value: "홍길동",
-                    empNo: "10004"
-                }
-            ];
-
-            $( "#empName" ).autocomplete({
-                minLength: 2,
-                source: empInfos,
-                select: function( event, ui ) {
-                    console.log(ui.item.empNo);
-                    $("#empNo").val(ui.item.empNo);
-                }
-            });
-        } );
-         */
-
         function modifySalary(){
             const empNo = ${salary.empNo};
             const amount = $("#amount").val();
@@ -59,7 +35,7 @@
             }).done(function(response){
                 alert("연봉 정보 수정이 완료되었습니다 :)");
             }).fail(function(err){
-                alert("연봉 정보 수정에 실패했습니다 :(");
+                err.responseJSON && alert(err.responseJSON.message);
             });
         }
 

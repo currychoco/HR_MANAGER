@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.position.domain.PositionDto;
 import site.currychoco.hrmanager.position.service.PositionService;
 
@@ -19,12 +20,15 @@ public class PositionController {
     // ---
     // page
     // ---
+    @CheckAuthority(authCode = "g000005")
     @GetMapping("/manager/position/create")
     public String createPosition(){return "manager/position/addPosition";}
 
+    @CheckAuthority(authCode = "g000012")
     @GetMapping("/manager/position/search")
     public String searchPosition(){return "manager/position/searchPosition";}
 
+    @CheckAuthority(authCode = "g000012")
     @GetMapping("/manager/position/detail")
     public String detailPosition(@RequestParam(name = "positionCode") String positionCode, Model model){
         PositionDto positionDto = positionService.getPositionByPositionCode(positionCode);
@@ -42,6 +46,7 @@ public class PositionController {
     /**
      * 직급 생성
      */
+    @CheckAuthority(authCode = "g000005")
     @ResponseBody
     @PostMapping("/position/add")
     public void addPosition(@RequestBody PositionDto dto){
@@ -60,6 +65,7 @@ public class PositionController {
     /**
      * 직급 정보 수정
      */
+    @CheckAuthority(authCode = "g000008")
     @ResponseBody
     @PostMapping("/position/modify")
     public void modifyPosition(@RequestBody PositionDto positionDto){
@@ -70,6 +76,7 @@ public class PositionController {
     /**
      *  직급 검색
      */
+    @CheckAuthority(authCode = "g000012")
     @ResponseBody
     @GetMapping("/position/search")
     public List<PositionDto> searchPosition(String data){

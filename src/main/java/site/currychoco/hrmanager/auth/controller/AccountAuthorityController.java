@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import site.currychoco.hrmanager.auth.domain.AccountAuthorityDto;
 import site.currychoco.hrmanager.auth.service.AccountAuthorityService;
+import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 
 @RequiredArgsConstructor
 @Controller
@@ -22,6 +23,7 @@ public class AccountAuthorityController {
     // api
     // ---
 
+    @CheckAuthority(authCode = "g000009")
     @ResponseBody
     @PostMapping("/account-authority/add")
     public void addAccountAuthority(@RequestBody AccountAuthorityDto accountAuthorityDto){

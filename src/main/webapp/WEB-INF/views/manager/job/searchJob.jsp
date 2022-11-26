@@ -49,7 +49,7 @@
 
         $('#jobInfoBody').html(htmlText);
       }).fail(function(err){
-        console.log(err);
+        err.responseJSON && alert(err.responseJSON.message);
       });
     }
 

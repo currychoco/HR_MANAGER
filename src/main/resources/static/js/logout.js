@@ -4,7 +4,7 @@ function logout(){
         url : "/account/logout"
     }).done(function(response){
         alert("로그아웃 완료");
-        location.reload();
+        location.href = "/";
     }).fail(function(err){
         console.log(err);
     });

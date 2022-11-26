@@ -18,6 +18,7 @@
 <div class="container">
     <div class="form-group">
         <input type="text" class="form-control" id="empNo" name="empNo" placeholder="사번" required>
+        <button type="button" class="btn btn-primary">이메일 인증 번호 발송</button>
     </div>
     <div class="form-group">
         <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>

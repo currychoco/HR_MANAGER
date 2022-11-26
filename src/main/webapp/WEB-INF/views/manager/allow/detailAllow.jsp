@@ -38,7 +38,7 @@
                 alert("승인완료");
                 location.href="/manager/allow/list";
             }).fail(function(err){
-                console.log(err);
+                err.responseJSON && alert(err.responseJSON.message);
             });
         }
     </script>

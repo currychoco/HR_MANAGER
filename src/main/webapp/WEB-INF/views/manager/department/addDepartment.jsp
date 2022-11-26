@@ -41,7 +41,7 @@
         location.reload();
       }).fail(function(err){
         console.log(err);
-        alert("부서 생성 실패");
+        err.responseJSON && alert(err.responseJSON.message);
       });
     }
 

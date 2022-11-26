@@ -113,7 +113,7 @@ public class EmployeeController {
     }
 
     // 새로운 사번 추가
-    @CheckAuthority(authCode = "g000002")
+    @CheckAuthority(authCode = "g000000")
     @ResponseBody
     @PostMapping("/employee/add")
     public boolean addNemEmployee(@RequestBody EmployeeDto employeeDto){

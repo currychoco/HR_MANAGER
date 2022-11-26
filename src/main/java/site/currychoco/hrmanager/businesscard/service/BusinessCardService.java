@@ -153,4 +153,21 @@ public class BusinessCardService {
                 .map(n -> BusiCardDto.fromEntity(n))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * 명함 신청 no으로 출력
+     */
+    public BusiCardDto getBusiCardDtoByNo(Long no){
+        BusiCard busiCard = busiCardRepository.findById(no).orElseThrow();
+        BusiCardDto busiCardDto = BusiCardDto.fromEntity(busiCard);
+        return busiCardDto;
+    }
+
+    /**
+     * 명함 신청 승인
+     */
+    public void allowBusiCard(BusiCardDto dto){
+        BusiCard busiCard = new BusiCard(dto);
+        busiCardRepository.save(busiCard);
+    }
 }
