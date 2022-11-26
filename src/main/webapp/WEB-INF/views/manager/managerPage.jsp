@@ -14,6 +14,7 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="body-container">
+        <h3 class="title">관리자</h3>
 
     </div>
     <c:import url="/WEB-INF/views/footer.jsp"/>

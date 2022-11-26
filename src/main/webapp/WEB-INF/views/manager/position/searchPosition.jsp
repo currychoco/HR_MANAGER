@@ -64,10 +64,13 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
-<div class="container body-container text-center">
-  <div class="form-inline">
-    <input type="text" class="form-control" id="nameOrPositionCode" name="nameOrPositionCode" placeholder="직책명 or 직책코드" />
-    <button type="button" class="btn btn-primary" onclick="search()">검색</button>
+<div class="container body-container">
+  <h3 class="title">직급 관리</h3>
+  <div class="text-center">
+    <div class="form-inline">
+      <input type="text" class="form-control" id="nameOrPositionCode" name="nameOrPositionCode" placeholder="직급명 or 직급코드" />
+      <button type="button" class="btn btn-primary" onclick="search()">검색</button>
+    </div>
   </div>
   <div>
     <table class="table table-hover">

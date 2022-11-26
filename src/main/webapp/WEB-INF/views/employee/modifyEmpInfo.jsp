@@ -73,6 +73,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 
 <div class="container body-container">
+  <h3 class="title">나의인사정보 수정</h3>
   <form id="updateForm">
     <div class="form-group">
       <input type="hidden" id="empNo" name="empNo" value="${employee.empNo}">

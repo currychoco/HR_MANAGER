@@ -10,6 +10,11 @@
 <html>
 <head>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
+    <style>
+        tbody th,td {
+            padding: 20px 0px !important;
+        }
+    </style>
     <script type="text/javascript">
         let empNo;
 
@@ -81,6 +86,7 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container body-container">
+        <h3 class="title">나의인사정보</h3>
         <div class="form-group">
             <table class="table table-hover">
                 <tbody id="empInfo"></tbody>

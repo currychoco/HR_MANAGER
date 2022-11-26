@@ -47,11 +47,8 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
-<div class="container body-container text-center">
-  <form class="form-inline">
-    <input type="text" class="form-control" id="name" name = "name" placeholder="이름" />
-    <button type="button" class="btn btn-primary" onclick="recommend()">추천</button>
-  </form>
+<div class="container body-container">
+  <h3 class="title">인사정보 수정신청 관리</h3>
   <div>
     <table class="table table-hover">
       <thead>

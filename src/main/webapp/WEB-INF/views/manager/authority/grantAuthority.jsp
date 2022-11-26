@@ -111,44 +111,43 @@
 <body>
   <c:import url="/WEB-INF/views/header.jsp"/>
 
-  <div>
-    <div class="container body-container">
-      <form id="addForm">
-        <div class="form-inline">
-          <div class="form-group">
-            <input type="text" class="form-control" id="empName" name="empName" placeholder="사원명" required>
-            <button type="button" class="btn btn-primary" onclick="searchEmployee()">검색</button>
-          </div>
-        </div>
+  <div class="container body-container">
+    <h3 class="title">권한 관리</h3>
+    <form id="addForm">
+      <div class="form-inline">
         <div class="form-group">
-          <table class="table">
-            <thead id="empInfoHead">
-            <tr>
-              <th>사번</th>
-              <th>이름</th>
-              <th>성별</th>
-              <th>부서</th>
-              <th>직책</th>
-            </tr>
-            </thead>
-            <tbody id="empInfoBody">
-            <!--검색된 사원 리스트 출력-->
-            </tbody>
-          </table>
+          <input type="text" class="form-control" id="empName" name="empName" placeholder="사번 or 사원명" required>
+          <button type="button" class="btn btn-primary" onclick="searchEmployee()">검색</button>
         </div>
-        <div class="form-group">
-          <select class="form-control" id="authority" name="authority">
-            <c:forEach items="${authList}" var="item">
-              <option value="${item.authCode}">${item.authName}</option>
-            </c:forEach>
-          </select>
-          <input type="hidden" id="empNo" value="">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">권한부여</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="form-group">
+        <table class="table">
+          <thead id="empInfoHead">
+          <tr>
+            <th>사번</th>
+            <th>이름</th>
+            <th>성별</th>
+            <th>부서</th>
+            <th>직책</th>
+          </tr>
+          </thead>
+          <tbody id="empInfoBody">
+          <!--검색된 사원 리스트 출력-->
+          </tbody>
+        </table>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="authority" name="authority">
+          <c:forEach items="${authList}" var="item">
+            <option value="${item.authCode}">${item.authName}</option>
+          </c:forEach>
+        </select>
+        <input type="hidden" id="empNo" value="">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">권한부여</button>
+      </div>
+    </form>
   </div>
   <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>

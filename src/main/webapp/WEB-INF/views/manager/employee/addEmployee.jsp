@@ -64,6 +64,7 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container body-container">
+        <h3 class="title">사원 관리</h3>
         <form id="addForm">
             <div class="form-group">
                 <input type="text" class="form-control" id="empName" name="empName" placeholder="이름" required>

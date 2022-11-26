@@ -20,7 +20,14 @@
 <meta property="og:image" content="/favicon.png">
 
 <style>
+    h3.title {
+        margin-bottom: 40px;
+        font-weight: bold;
+    }
     .body-container {
-        min-height: 90%;
+        min-height: 80%;
+    }
+    header.body-header {
+        margin-bottom:20px;
     }
 </style>

@@ -55,6 +55,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 
 <div class="container body-container">
+    <h3 class="title">직책 관리</h3>
     <form id="updateForm">
         <div class="form-group">
             <input type="text" class="form-control" id="jobCode" name="jobCode" placeholder="직책코드" value="${job.jobCode}" readonly>

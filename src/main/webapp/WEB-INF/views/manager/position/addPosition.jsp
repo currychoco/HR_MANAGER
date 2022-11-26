@@ -53,6 +53,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 <div>
     <form class="container body-container" id="addForm">
+        <h3 class="title">직급 관리</h3>
         <div class="form-group">
             <input type="text" class="form-control" id="positionCode" name="positionCode" placeholder="직급코드" required>
         </div>

@@ -59,6 +59,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 
 <div class="container body-container">
+    <h3 class="title">부서 관리</h3>
     <form id="updateForm">
         <div class="form-group">
             <input type="text" class="form-control" id="deptCode" name="deptCode" placeholder="부서코드" value="${department.deptCode}" readonly>

@@ -15,6 +15,7 @@
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
 <div class="container body-container">
+    <h3 class="title">회원가입</h3>
     <div class="row form-group">
         <div class="col-sm-10">
             <input type="text" class="form-control" id="empNo" name="empNo" placeholder="사번" required>

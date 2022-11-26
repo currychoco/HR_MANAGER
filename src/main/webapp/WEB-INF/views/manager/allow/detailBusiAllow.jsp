@@ -56,6 +56,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 
 <div class="container body-container">
+    <h3 class="title">명함신청 관리</h3>
     <table class="table">
         <thead>
         <tr>

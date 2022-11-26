@@ -15,6 +15,9 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container body-container">
+        <div class="text-center" style="height:500px;">
+            <img src="/favicon.png">
+        </div>
         <form>
             <div class="form-group">
                 <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required/>

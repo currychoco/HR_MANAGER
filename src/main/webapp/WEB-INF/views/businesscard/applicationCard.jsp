@@ -35,6 +35,7 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container body-container">
+        <h3 class="title">명함 신청</h3>
         <div class="card form-group">
             <img src="/business-card/image?cardType=ko" class="busicard" />
             <img src="/business-card/image?cardType=en" class="busicard" />

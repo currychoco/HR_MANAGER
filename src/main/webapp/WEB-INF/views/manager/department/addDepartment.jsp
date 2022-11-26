@@ -55,7 +55,8 @@
 </head>
 <body>
   <c:import url="/WEB-INF/views/header.jsp"/>
-  <div>
+  <div class="container body-container">
+    <h3 class="title">부서 관리</h3>
     <form class="container body-container" id="addForm">
       <div class="form-group">
         <input type="text" class="form-control" id="deptCode" name="deptCode" placeholder="부서코드" required>
