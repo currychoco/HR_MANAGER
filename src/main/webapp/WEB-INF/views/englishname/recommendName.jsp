@@ -16,11 +16,6 @@
         function recommend() {
             const name = '<c:out value="${param.empName}"/>';
 
-            if(!name) {
-                alert("영문명을 추천받을 한글명을 입력해 주세요");
-                return;
-            }
-
             $.ajax({
                 type : "GET",
                 url : "/englishname/recommand",

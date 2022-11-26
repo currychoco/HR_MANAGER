@@ -25,7 +25,7 @@ function join() {
         })
     }).done(function(response){
         alert("회원가입 성공");
-        location.href="/account/login";
+        location.href="/login";
     }).fail(function (err){
         err.responseJSON && alert(err.responseJSON.message);
     });

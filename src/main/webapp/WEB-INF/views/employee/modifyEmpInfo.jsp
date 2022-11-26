@@ -51,6 +51,7 @@
       }).done(function(response){
         console.log(response);
         alert("신청이 완료되었습니다")
+        location.href="/";
       }).fail(function(err){
         console.log(err);
       });
@@ -73,7 +74,7 @@
 <c:import url="/WEB-INF/views/header.jsp"/>
 
 <div class="container body-container">
-  <h3 class="title">나의인사정보 수정</h3>
+  <h3 class="title">나의 인사정보 수정</h3>
   <form id="updateForm">
     <div class="form-group">
       <input type="hidden" id="empNo" name="empNo" value="${employee.empNo}">
@@ -96,7 +97,7 @@
       <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block">수정요청</button>
+      <button type="submit" class="btn btn-primary btn-block">나의 인사정보 수정요청</button>
     </div>
   </form>
 </div>

@@ -86,14 +86,14 @@
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
     <div class="container body-container">
-        <h3 class="title">나의인사정보</h3>
+        <h3 class="title">나의 인사정보</h3>
         <div class="form-group">
             <table class="table table-hover">
                 <tbody id="empInfo"></tbody>
             </table>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary btn-block" onclick="modifyOwnInfo()">수정요청</button>
+            <button class="btn btn-primary btn-block" onclick="modifyOwnInfo()">나의 인사정보 수정요청</button>
         </div>
     </div>
     <c:import url="/WEB-INF/views/footer.jsp"/>

@@ -26,16 +26,15 @@ import java.net.BindException;
 public class ApiExceptionHandlerAdvice {
 
     // 400 Bad Request
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
-            BadRequestException.class
-            , MissingServletRequestParameterException.class
-            , MissingServletRequestPartException.class
-            , ServletRequestBindingException.class
-            , HttpMessageNotReadableException.class
-            , MethodArgumentNotValidException.class
-            , MethodArgumentTypeMismatchException.class
-            , BindException.class
+        BadRequestException.class
+                , MissingServletRequestParameterException.class
+                , MissingServletRequestPartException.class
+                , ServletRequestBindingException.class
+                , HttpMessageNotReadableException.class
+                , MethodArgumentNotValidException.class
+                , MethodArgumentTypeMismatchException.class
+                , BindException.class
     })
     protected void badRequestException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
@@ -44,7 +43,6 @@ public class ApiExceptionHandlerAdvice {
     }
 
     // 401 Unauthorized
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedException.class)
     protected void unauthorizedExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
@@ -53,7 +51,6 @@ public class ApiExceptionHandlerAdvice {
     }
 
     // 403 Forbidden
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(ForbiddenException.class)
     protected void forbiddenExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
@@ -62,7 +59,6 @@ public class ApiExceptionHandlerAdvice {
     }
 
     // 404 Not Found
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     protected void notFoundException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
@@ -71,7 +67,6 @@ public class ApiExceptionHandlerAdvice {
     }
 
     // 500 Internal Server Error
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     protected void exceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 

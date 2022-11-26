@@ -1,14 +1,13 @@
 package site.currychoco.hrmanager.account.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import site.currychoco.hrmanager.account.domain.Account;
 import site.currychoco.hrmanager.account.domain.AccountDto;
 import site.currychoco.hrmanager.account.domain.EmailIdentification;
 import site.currychoco.hrmanager.account.repository.AccountRepository;
 import site.currychoco.hrmanager.account.repository.EmailIdentificationRepository;
-import site.currychoco.hrmanager.account.repository.impl.EmailIdentificationRepositoryImpl;
 import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.repository.EmployeeRepository;
@@ -26,9 +25,12 @@ public class AccountService {
 
     private final EmailSendUtil emailSendUtil;
 
-    // 로그인
+    /**
+     * 로그인
+     */
     public AccountDto login(String id, String password){
-        Account selectedAcc = accountRepository.findAccountByIdAndPassword(id, password);
+        final String hexedPassword = DigestUtils.sha256Hex(password);
+        Account selectedAcc = accountRepository.findAccountByIdAndPassword(id, hexedPassword);
         if(selectedAcc == null){
             return null;
         } else{
@@ -43,8 +45,8 @@ public class AccountService {
     public void join(AccountDto accountDto){
         Employee emp = employeeRepository.findById(accountDto.getEmpNo()).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
         EmailIdentification email = emailIdentificationRepository.findById(emp.getEmail()).orElseThrow(()->new BadRequestException("이메일 인증을 시도해 주십시오"));
-        if(!accountRepository.existsById(accountDto.getId())){
-            new BadRequestException("사용할 수 없는 아이디입니다");
+        if(accountRepository.existsById(accountDto.getId())){
+            throw new BadRequestException("사용할 수 없는 아이디입니다");
         }
         if(email.isChecked()){
             Account account = new Account(accountDto);

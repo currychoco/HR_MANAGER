@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +29,6 @@ public class Account {
     public Account(AccountDto dto){
         this.empNo = dto.getEmpNo();
         this.id = dto.getId();
-        this.password = dto.getPassword();
+        this.password = DigestUtils.sha256Hex(dto.getPassword()); // dto 에서 변환할 시 hex
     }
 }

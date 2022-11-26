@@ -35,7 +35,7 @@ public class ContextConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns(Arrays.asList("/js/**", "/image/**", "/favicon.png"))
                 .excludePathPatterns(Arrays.asList("/login", "/join"))
-                .excludePathPatterns(Arrays.asList("/account/**"));
+                .excludePathPatterns(Arrays.asList("/account/**", "/error"));
 
         registry.addInterceptor(checkAuthorityInterceptor)
                 .addPathPatterns("/**");

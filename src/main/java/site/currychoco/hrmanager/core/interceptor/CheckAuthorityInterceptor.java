@@ -25,7 +25,6 @@ public class CheckAuthorityInterceptor implements HandlerInterceptor {
         try {
             anno = ((HandlerMethod)handler).getMethodAnnotation(CheckAuthority.class);
         } catch(ClassCastException cce) {
-            // 그냥 가~
         }
 
         if(anno != null) {
