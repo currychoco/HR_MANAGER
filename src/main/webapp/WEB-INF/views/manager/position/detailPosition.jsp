@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
         function modifyPosition(){
@@ -55,7 +54,7 @@
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
 
-<div class="container">
+<div class="container body-container">
     <form id="updateForm">
         <div class="form-group">
             <input type="text" class="form-control" id="positionCode" name="positionCode" placeholder="직급코드" value="${position.positionCode}" readonly>
@@ -74,5 +73,6 @@
         </div>
     </form>
 </div>
+<c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Title</title>
   <c:import url="/WEB-INF/views/layout/head.jsp"/>
   <script type="text/javascript">
     function getAllowList() {
@@ -29,8 +28,8 @@
                   <td><a href="/manager/allow/detail?no=\${e.no}&empNo=\${e.empNo}">\${e.empNo}</a></td>
                   <td>\${e.empName}</td>
                   <td>\${e.allow}</td>
-                  <td>\${e.requestDate}</td>
-                  <td>\${e.allowDate}</td>
+                  <td>\${e.requestDateToString}</td>
+                  <td>\${e.allowDateToString}</td>
               </tr>
           `;
         });
@@ -48,7 +47,7 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
-<div class="container text-center">
+<div class="container body-container text-center">
   <form class="form-inline">
     <input type="text" class="form-control" id="name" name = "name" placeholder="이름" />
     <button type="button" class="btn btn-primary" onclick="recommend()">추천</button>
@@ -71,5 +70,6 @@
     </table>
   </div>
 </div>
+<c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

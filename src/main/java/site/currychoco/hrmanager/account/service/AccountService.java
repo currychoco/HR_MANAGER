@@ -37,12 +37,21 @@ public class AccountService {
         }
     }
 
-    // 회원가입
-    public AccountDto join(AccountDto accountDto){
-        Account account = new Account(accountDto);
-        Account savedAccount = accountRepository.save(account);
-        AccountDto result = AccountDto.fromEntity(savedAccount);
-        return result;
+    /**
+     * 회원가입
+     */
+    public void join(AccountDto accountDto){
+        Employee emp = employeeRepository.findById(accountDto.getEmpNo()).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
+        EmailIdentification email = emailIdentificationRepository.findById(emp.getEmail()).orElseThrow(()->new BadRequestException("이메일 인증을 시도해 주십시오"));
+        if(!accountRepository.existsById(accountDto.getId())){
+            new BadRequestException("사용할 수 없는 아이디입니다");
+        }
+        if(email.isChecked()){
+            Account account = new Account(accountDto);
+            accountRepository.save(account);
+        }else{
+            throw new BadRequestException("이메일 인증을 시도해 주십시오");
+        }
     }
 
     public void sendIdentificationEmail(long empNo) {
@@ -58,6 +67,7 @@ public class AccountService {
         String createdKey = identification.getKey();
 
         if(createdKey.equals(key)) { // 인증 이메일 발송 시에 만들어진 키(createdKey) 와 사용자가 입력한 인증 키(key) 가 동일한 지 체크 
+            emailIdentificationRepository.check(identification);
             return true;
         }
         return false;
@@ -71,4 +81,19 @@ public class AccountService {
         AccountDto dto = AccountDto.fromEntity(account);
         return dto;
     }
+
+    /**
+     * 아이디 중복 체크
+     */
+    public boolean checkDuplicateId(String id){
+        return !accountRepository.existsById(id);
+    }
+
+    /**
+     * 아이디 유무 체크
+     */
+    public boolean checkIsId(Long empNo){
+        return accountRepository.existsById(empNo);
+    }
+
 }

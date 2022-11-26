@@ -10,3 +10,17 @@
 <!-- custom lib -->
 <script src="/js/logout.js"></script>
 <!-- // custom lib -->
+
+<!-- favicon image -->
+<link rel="shortcut icon" href="/favicon.png">
+
+<title>파인애플 - 인사</title>
+<meta property="og:title" content="파인애플 - 인사">
+<meta property="og:description" content="인사관리 시스템">
+<meta property="og:image" content="/favicon.png">
+
+<style>
+    .body-container {
+        min-height: 90%;
+    }
+</style>

@@ -12,7 +12,9 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">파인애플</a>
+                <a class="navbar-brand" href="/" style="padding: 0px 10px;">
+                    <img src="/favicon.png" width="50" height="50" />
+                </a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/business-card">명함 신청</a></li>

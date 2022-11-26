@@ -64,7 +64,7 @@
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
-    <div class="container text-center">
+    <div class="container body-container text-center">
         <form class="form-inline">
             <input type="text" class="form-control" id = "nameOrEmpNo" name="nameOrEmpNo" placeholder="이름 or 사번" />
             <button type="button" class="btn btn-primary" onclick="search()">검색</button>
@@ -93,5 +93,6 @@
             </table>
         </div>
     </div>
+    <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

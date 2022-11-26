@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AccountAuthorityRepository extends JpaRepository<AccountAuthority, Long> {
     List<AccountAuthority> findAllByEmpNo(Long empNo);
+
+    boolean existsByEmpNoAndAuthCode(Long empNo, String authCode);
 }

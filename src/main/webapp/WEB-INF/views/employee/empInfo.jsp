@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
         let empNo;
@@ -60,7 +59,7 @@
                     </tr>
                     <tr>
                         <th>입사일</th>
-                        <td>\${emp.startDate}</td>
+                        <td>\${emp.startDateToString}</td>
                     </tr>
                     <tr>
                         <th>아이디</th>
@@ -81,7 +80,7 @@
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
-    <div class="container">
+    <div class="container body-container">
         <div class="form-group">
             <table class="table table-hover">
                 <tbody id="empInfo"></tbody>
@@ -91,6 +90,6 @@
             <button class="btn btn-primary btn-block" onclick="modifyOwnInfo()">수정요청</button>
         </div>
     </div>
-
+    <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

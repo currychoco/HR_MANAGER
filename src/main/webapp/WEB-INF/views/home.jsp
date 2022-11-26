@@ -9,14 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
 </head>
 <body>
-<c:import url="header.jsp"/>
-<section>
-    메인화면
-</section>
+<c:import url="/WEB-INF/views/header.jsp"/>
 
+<div class="container body-container">
+    메인화면
+</div>
+
+<c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

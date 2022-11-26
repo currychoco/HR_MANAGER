@@ -9,4 +9,6 @@ public interface EmailIdentificationRepository {
     Optional<EmailIdentification> findById(String email);
 
     EmailIdentification save(EmailIdentification identification);
+
+    void check(EmailIdentification identification);
 }

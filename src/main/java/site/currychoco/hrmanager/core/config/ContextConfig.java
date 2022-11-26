@@ -6,9 +6,15 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import site.currychoco.hrmanager.core.interceptor.CheckAuthorityInterceptor;
+import site.currychoco.hrmanager.core.interceptor.CheckLoginInterceptor;
+
+import java.util.Arrays;
 
 @Configuration
 public class ContextConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private CheckLoginInterceptor checkLoginInterceptor;
 
     @Autowired
     private CheckAuthorityInterceptor checkAuthorityInterceptor;
@@ -24,6 +30,13 @@ public class ContextConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
+        registry.addInterceptor(checkLoginInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(Arrays.asList("/js/**", "/image/**"))
+                .excludePathPatterns(Arrays.asList("/login", "/join"))
+                .excludePathPatterns(Arrays.asList("/account/**"));
+
         registry.addInterceptor(checkAuthorityInterceptor)
                 .addPathPatterns("/**");
     }

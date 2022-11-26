@@ -3,6 +3,7 @@ package site.currychoco.hrmanager.myInformation.domain;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 
 @NoArgsConstructor
@@ -22,6 +23,22 @@ public class MyInformationDto {
     private String allow;
     private Timestamp requestDate;
     private Timestamp allowDate;
+
+    public String getRequestDateToString() {
+        if(requestDate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            return sdf.format(requestDate);
+        }
+        return null;
+    }
+
+    public String getAllowDateToString() {
+        if(allowDate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            return sdf.format(allowDate);
+        }
+        return null;
+    }
 
     public static MyInformationDto fromEntity(MyInformation ownInfo){
         if(ownInfo == null){

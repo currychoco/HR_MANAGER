@@ -13,8 +13,9 @@
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
-    <div>
+    <div class="body-container">
 
     </div>
+    <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

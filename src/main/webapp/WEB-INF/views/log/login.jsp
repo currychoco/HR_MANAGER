@@ -9,13 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script src="/js/login.js"></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
-    <div class="container">
+    <div class="container body-container">
         <form>
             <div class="form-group">
                 <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required/>
@@ -28,5 +27,6 @@
             </div>
         </form>
     </div>
+    <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

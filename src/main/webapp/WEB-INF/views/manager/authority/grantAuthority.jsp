@@ -75,13 +75,27 @@
   }
 
   function selectEmployee(empNo){
-    $("#empNo").val(empNo);
-    $("#employee").val(empNo);
 
-    $(".btn-authority").removeClass("btn-primary").addClass("btn-basic");
-    $("button[data-emp-no=" + empNo + "]").removeClass("btn-basic").addClass("btn-primary");
+    $.ajax({
+      url : "/account/check-is-id",
+      type: "GET",
+      contentType: "application/json",
+      data: {
+        empNo : empNo,
+      }
+    }).done(function(response){
+      if(response){
+        $("#empNo").val(empNo);
+        $("#employee").val(empNo);
 
-    currentSelectedEmpNo = empNo;
+        $(".btn-authority").removeClass("btn-primary").addClass("btn-basic");
+        $("button[data-emp-no=" + empNo + "]").removeClass("btn-basic").addClass("btn-primary");
+      }else{
+        alert("회원가입이 안 된 사원입니다");
+      }
+    }).fail(function(err){
+      err.responseJSON && alert(err.responseJSON.message);
+    });
   }
 
   $(document).ready(function() {
@@ -98,7 +112,7 @@
   <c:import url="/WEB-INF/views/header.jsp"/>
 
   <div>
-    <div class="container">
+    <div class="container body-container">
       <form id="addForm">
         <div class="form-inline">
           <div class="form-group">
@@ -136,6 +150,6 @@
       </form>
     </div>
   </div>
-
+  <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

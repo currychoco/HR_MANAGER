@@ -56,7 +56,7 @@
 <body>
   <c:import url="/WEB-INF/views/header.jsp"/>
   <div>
-    <form class="container" id="addForm">
+    <form class="container body-container" id="addForm">
       <div class="form-group">
         <input type="text" class="form-control" id="deptCode" name="deptCode" placeholder="부서코드" required>
       </div>
@@ -80,5 +80,6 @@
       </div>
     </form>
   </div>
+  <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

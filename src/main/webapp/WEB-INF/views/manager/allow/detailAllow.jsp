@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <script type="text/javascript">
         function modifyAllow(){
@@ -46,7 +45,7 @@
 <body>
 <c:import url="/WEB-INF/views/header.jsp"/>
 
-<div class="container">
+<div class="container body-container">
     <table class="table">
         <thead>
             <tr>
@@ -87,5 +86,6 @@
         <button class="btn btn-primary btn-block" onclick="modifyAllow()">승인</button>
     </div>
 </div>
+<c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

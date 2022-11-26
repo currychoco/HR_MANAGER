@@ -37,16 +37,7 @@ public class EmployeeService {
 
     // 이름으로 사원 정보 리스트 가져오기
     public List<EmployeeAllInfo> getListByName(String name){
-        List<EmployeeAllInfo> list = new ArrayList<>();
-
-        list = employeeAllInfoRepository.findAllByEmpName(name);
-        for(EmployeeAllInfo emp : list){
-            if(emp.getId() == null){
-                emp.setId("-");
-            }
-        }
-
-        return list;
+        return employeeAllInfoRepository.findAllByEmpName(name);
     }
 
     // 사번으로 사원 정보 리스트 가져오기

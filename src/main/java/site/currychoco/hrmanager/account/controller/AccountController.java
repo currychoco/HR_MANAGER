@@ -56,10 +56,9 @@ public class AccountController {
     // 회원가입
     @ResponseBody
     @PostMapping("/account/join")
-    public boolean join(@RequestBody Account account){
+    public void join(@RequestBody Account account){
         AccountDto dto = AccountDto.fromEntity(account);
-        AccountDto result = accountService.join(dto);
-        return result != null;
+        accountService.join(dto);
     }
 
     /**
@@ -86,4 +85,23 @@ public class AccountController {
     public void logout(HttpServletRequest request){
         request.getSession().invalidate();
     }
+
+    /**
+     * 아이디 중복 체크
+     */
+    @ResponseBody
+    @GetMapping("/account/duplicate-id")
+    public boolean checkDuplicateId(@RequestParam String id){
+        return accountService.checkDuplicateId(id);
+    }
+
+    /**
+     * 회원가입 유무 확인
+     */
+    @ResponseBody
+    @GetMapping("/account/check-is-id")
+    public boolean checkIsId(@RequestParam Long empNo){
+        return accountService.checkIsId(empNo);
+    }
+
 }

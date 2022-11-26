@@ -2,10 +2,12 @@ package site.currychoco.hrmanager.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import site.currychoco.hrmanager.auth.domain.AccountAuthority;
 import site.currychoco.hrmanager.auth.domain.AccountAuthorityDto;
 import site.currychoco.hrmanager.auth.repository.AccountAuthorityRepository;
+import site.currychoco.hrmanager.core.exception.BadRequestException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,13 @@ public class AccountAuthorityService {
      */
     public void addAccountAuthority(AccountAuthorityDto accountAuthorityDto){
         AccountAuthority accountAuthority = new AccountAuthority(accountAuthorityDto);
-        accountAuthorityRepository.save(accountAuthority);
+
+        if(!accountAuthorityRepository.existsByEmpNoAndAuthCode(accountAuthorityDto.getEmpNo(), accountAuthorityDto.getAuthCode())){
+            accountAuthorityRepository.save(accountAuthority);
+        }else{
+            throw new BadRequestException("이미 부여된 권한입니다");
+        }
+
+
     }
 }

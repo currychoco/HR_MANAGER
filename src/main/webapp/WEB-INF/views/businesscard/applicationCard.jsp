@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
     <style>
         img.busicard {
@@ -35,7 +34,7 @@
 </head>
 <body>
     <c:import url="/WEB-INF/views/header.jsp"/>
-    <div class="container">
+    <div class="container body-container">
         <div class="card form-group">
             <img src="/business-card/image?cardType=ko" class="busicard" />
             <img src="/business-card/image?cardType=en" class="busicard" />
@@ -44,5 +43,6 @@
             <button type="button" class="btn btn-primary btn-block" onclick="requestBusiCard()">명함 신청하기</button>
         </div>
     </div>
+    <c:import url="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>
