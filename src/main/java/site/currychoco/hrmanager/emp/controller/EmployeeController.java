@@ -1,6 +1,8 @@
 package site.currychoco.hrmanager.emp.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import site.currychoco.hrmanager.position.service.PositionService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,11 +119,11 @@ public class EmployeeController {
     @CheckAuthority(authCode = "g000000")
     @ResponseBody
     @PostMapping("/employee/add")
-    public boolean addNemEmployee(@RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<Void> addNemEmployee(@RequestBody EmployeeDto employeeDto){
 
         EmployeeDto dto = employeeService.addNewEmployee(employeeDto);
 
-        return dto != null;
+        return ResponseEntity.ok(null);
     }
 
     @CheckAuthority(authCode = "g000001")

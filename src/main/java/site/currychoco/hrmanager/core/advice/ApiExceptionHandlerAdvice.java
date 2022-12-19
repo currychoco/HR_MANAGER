@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
+import site.currychoco.hrmanager.core.dto.ErrorDto;
 import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.core.exception.ForbiddenException;
 import site.currychoco.hrmanager.core.exception.NotFoundException;
@@ -26,6 +27,7 @@ import java.net.BindException;
 public class ApiExceptionHandlerAdvice {
 
     // 400 Bad Request
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({
         BadRequestException.class
                 , MissingServletRequestParameterException.class
@@ -36,41 +38,50 @@ public class ApiExceptionHandlerAdvice {
                 , MethodArgumentTypeMismatchException.class
                 , BindException.class
     })
-    protected void badRequestException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
+    protected ResponseEntity<ErrorDto> badRequestException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
         exception.printStackTrace();
-        res.sendError(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
+        ErrorDto error = new ErrorDto(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     // 401 Unauthorized
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedException.class)
-    protected void unauthorizedExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
+    protected ResponseEntity<ErrorDto> unauthorizedExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
         exception.printStackTrace();
-        res.sendError(HttpStatus.UNAUTHORIZED.value(), exception.getMessage());
+        ErrorDto error = new ErrorDto(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
     // 403 Forbidden
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(ForbiddenException.class)
-    protected void forbiddenExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
+    protected ResponseEntity<ErrorDto> forbiddenExceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
         exception.printStackTrace();
-        res.sendError(HttpStatus.FORBIDDEN.value(), exception.getMessage());
+        ErrorDto error = new ErrorDto(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 
     // 404 Not Found
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    protected void notFoundException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
+    protected ResponseEntity<ErrorDto> notFoundException(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
         exception.printStackTrace();
-        res.sendError(HttpStatus.NOT_FOUND.value(), exception.getMessage());
+        ErrorDto error = new ErrorDto(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     // 500 Internal Server Error
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    protected void exceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
+    protected ResponseEntity<ErrorDto> exceptionHandler(HttpServletRequest req, HttpServletResponse res, Exception exception) throws IOException {
 
         exception.printStackTrace();
-        res.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+        ErrorDto error = new ErrorDto(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 }

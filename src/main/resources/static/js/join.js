@@ -9,11 +9,22 @@ function join() {
     }
 
     if(id.length<4){
-        alert("아이디가 4글자 미만입니다");
+        alert("아이디는 4글자 이상으로 생성해 주세요");
+        return;
+    }
+
+    const reg = /^[A-Za-z0-9]{6,12}$/;
+    if(!reg.test(password) ) {
+        alert("패스워드는 6~12자리 이내, 하나 이상의 문자와 하나의 숫자를 포함해서 생성해 주세요");
         return;
     }
 
 
+    // const idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+    // if( !idReg.test(id)){
+    //     alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+    //     return;
+    // }
     $.ajax({
         type : "POST",
         url : "/account/join",

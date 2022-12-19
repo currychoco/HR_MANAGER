@@ -36,7 +36,7 @@
                     <td>\${e.gender == 'M' ? "남" : "여"}</td>
                     <td>\${e.deptName}</td>
                     <td>\${e.positionName}</td>
-                    <td><button type="button" class="btn btn-basic btn-authority" data-emp-no="\${e.empNo}" onclick="selectEmployee(\${e.empNo})">선택</button></td>
+                    <td><button type="button" class="btn btn-basic btn-authority" data-emp-no="\${e.empNo}" onclick="selectEmployee(\${e.empNo}, '\${e.empName}')">선택</button></td>
                 </tr>
             `;
         });
@@ -74,7 +74,16 @@
     }
   }
 
-  function selectEmployee(empNo){
+  function selectEmployee(empNo, empName){
+
+    const accountEmpNo = (Number)($("#accountEmpNo").val());
+    console.log(accountEmpNo);
+    console.log(empNo);
+
+    if(empNo === accountEmpNo){
+      alert("본인에게 권한을 부여할 수 없습니다");
+      return;
+    }
 
     $.ajax({
       url : "/account/check-is-id",
@@ -87,6 +96,7 @@
       if(response){
         $("#empNo").val(empNo);
         $("#employee").val(empNo);
+        $("#empName").val(empName);
 
         $(".btn-authority").removeClass("btn-primary").addClass("btn-basic");
         $("button[data-emp-no=" + empNo + "]").removeClass("btn-basic").addClass("btn-primary");
@@ -129,6 +139,7 @@
             <th>성별</th>
             <th>부서</th>
             <th>직책</th>
+            <th>&nbsp;</th>
           </tr>
           </thead>
           <tbody id="empInfoBody">
@@ -143,6 +154,7 @@
           </c:forEach>
         </select>
         <input type="hidden" id="empNo" value="">
+        <input type="hidden" id="accountEmpNo" value="${sessionScope.empNo}">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">권한부여</button>

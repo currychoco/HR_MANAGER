@@ -58,6 +58,7 @@ public class BusinessCardController {
      * 명함 신청
      */
     @ResponseBody
+    // @PostMapping("/busi-card")
     @PostMapping("/busi-card/request")
     public void requestBusiCard(HttpSession session){
         Long empNo = (Long)session.getAttribute("empNo");
@@ -71,17 +72,23 @@ public class BusinessCardController {
      */
     @CheckAuthority(authCode = "g000016")
     @ResponseBody
+    // @GetMapping("/busi-card")
     @GetMapping("/busi-card/list")
     public List<BusiCardDto> listBusiCard(){
         List<BusiCardDto> list = businessCardService.getBusiList();
         return list;
     }
 
+    // @GetMapping("/busi-card/{no}")
+    // @GetMapping("/busi-card/emp-name/{empName}")
+    // @GetMapping("/busi-card?empName={empName}")
+
     /**
      * 명함 신청 승인
      */
     @CheckAuthority(authCode = "g000016")
     @ResponseBody
+    // @PostMapping("/busi-card/{no}/allow")
     @PostMapping("/allow/busi-card")
     public void busiCardAllow(@RequestBody BusiCardDto busiCardDto){
         BusiCardDto dto = businessCardService.getBusiCardDtoByNo(busiCardDto.getNo());

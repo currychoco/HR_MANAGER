@@ -90,8 +90,8 @@ public class BusinessCardService {
             graphics.drawImage(jobImg, 25, 125, null);
             graphics.drawImage(positionImg, 25, 150, null);
 
-            graphics.drawImage(phoneImg, 420, 210, null);
-            graphics.drawImage(emailImg, 55, 210, null);
+            graphics.drawImage(phoneImg, 55, 294, null);
+            graphics.drawImage(emailImg, 55, 208, null);
 
             return result;
         }

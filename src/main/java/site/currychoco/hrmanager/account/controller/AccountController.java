@@ -30,11 +30,21 @@ public class AccountController {
     //---
     // API
     //---
+    private void sleep() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // 로그인
     @ResponseBody
     @PostMapping("/account/login")
     public boolean login(@RequestParam String id, @RequestParam String password, HttpServletRequest request){
+
+        sleep();
+
         AccountDto result = accountService.login(id, password);
 
         if(result != null){
@@ -57,6 +67,9 @@ public class AccountController {
     @ResponseBody
     @PostMapping("/account/join")
     public void join(@RequestBody Account account){
+
+        sleep();
+
         AccountDto dto = AccountDto.fromEntity(account);
         accountService.join(dto);
     }
@@ -67,6 +80,9 @@ public class AccountController {
     @ResponseBody
     @PostMapping("/account/send-identification-email")
     public void sendIdentificationEmail(@RequestParam(name = "empNo") long empNo) {
+
+        sleep();
+
         accountService.sendIdentificationEmail(empNo);
     }
 
@@ -76,6 +92,9 @@ public class AccountController {
     @ResponseBody
     @GetMapping("/account/validate-identification-email")
     public boolean checkIdentificationEmail(@RequestParam(name = "empNo") long empNo, @RequestParam(name = "key") String key) {
+
+        sleep();
+
         return accountService.validateIdentificationEmail(empNo, key);
     }
 
@@ -92,6 +111,9 @@ public class AccountController {
     @ResponseBody
     @GetMapping("/account/duplicate-id")
     public boolean checkDuplicateId(@RequestParam String id){
+
+        sleep();
+
         return accountService.checkDuplicateId(id);
     }
 
@@ -101,6 +123,9 @@ public class AccountController {
     @ResponseBody
     @GetMapping("/account/check-is-id")
     public boolean checkIsId(@RequestParam Long empNo){
+
+        sleep();
+
         return accountService.checkIsId(empNo);
     }
 
