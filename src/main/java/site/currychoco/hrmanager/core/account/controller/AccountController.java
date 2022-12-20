@@ -1,11 +1,11 @@
-package site.currychoco.hrmanager.account.controller;
+package site.currychoco.hrmanager.core.account.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import site.currychoco.hrmanager.account.domain.Account;
-import site.currychoco.hrmanager.account.domain.AccountDto;
-import site.currychoco.hrmanager.account.service.AccountService;
+import site.currychoco.hrmanager.core.account.domain.Account;
+import site.currychoco.hrmanager.core.account.domain.AccountDto;
+import site.currychoco.hrmanager.core.account.service.AccountService;
 import site.currychoco.hrmanager.auth.service.AccountAuthorityService;
 
 import javax.servlet.http.HttpServletRequest;

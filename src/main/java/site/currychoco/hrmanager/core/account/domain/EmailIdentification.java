@@ -1,4 +1,4 @@
-package site.currychoco.hrmanager.account.domain;
+package site.currychoco.hrmanager.core.account.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

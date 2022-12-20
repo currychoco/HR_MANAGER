@@ -1,9 +1,8 @@
-package site.currychoco.hrmanager.account.repository.impl;
+package site.currychoco.hrmanager.core.account.repository.impl;
 
 import org.springframework.stereotype.Component;
-import site.currychoco.hrmanager.account.domain.EmailIdentification;
-import site.currychoco.hrmanager.account.repository.EmailIdentificationRepository;
-import site.currychoco.hrmanager.core.exception.BadRequestException;
+import site.currychoco.hrmanager.core.account.domain.EmailIdentification;
+import site.currychoco.hrmanager.core.account.repository.EmailIdentificationRepository;
 
 import java.util.HashMap;
 import java.util.Map;

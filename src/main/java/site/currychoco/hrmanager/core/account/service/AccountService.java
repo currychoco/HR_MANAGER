@@ -1,13 +1,13 @@
-package site.currychoco.hrmanager.account.service;
+package site.currychoco.hrmanager.core.account.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
-import site.currychoco.hrmanager.account.domain.Account;
-import site.currychoco.hrmanager.account.domain.AccountDto;
-import site.currychoco.hrmanager.account.domain.EmailIdentification;
-import site.currychoco.hrmanager.account.repository.AccountRepository;
-import site.currychoco.hrmanager.account.repository.EmailIdentificationRepository;
+import site.currychoco.hrmanager.core.account.domain.Account;
+import site.currychoco.hrmanager.core.account.domain.AccountDto;
+import site.currychoco.hrmanager.core.account.domain.EmailIdentification;
+import site.currychoco.hrmanager.core.account.repository.AccountRepository;
+import site.currychoco.hrmanager.core.account.repository.EmailIdentificationRepository;
 import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.repository.EmployeeRepository;

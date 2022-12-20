@@ -1,6 +1,6 @@
-package site.currychoco.hrmanager.account.repository;
+package site.currychoco.hrmanager.core.account.repository;
 
-import site.currychoco.hrmanager.account.domain.EmailIdentification;
+import site.currychoco.hrmanager.core.account.domain.EmailIdentification;
 
 import java.util.Optional;
 
