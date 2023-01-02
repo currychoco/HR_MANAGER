@@ -19,6 +19,7 @@
             const gender = '<c:out value = "${myInformation.gender}"/>';
             const email = '<c:out value = "${myInformation.email}"/>';
             const phone = '<c:out value = "${myInformation.phone}"/>';
+            const address = '<c:out value = "${myInformation.address}"/>';
 
             $.ajax({
                 url : "/allow/update",
@@ -31,7 +32,8 @@
                     empNameEn : empNameEn,
                     gender : gender,
                     email : email,
-                    phone : phone
+                    phone : phone,
+                    address : address
                 })
             }).done(function(response){
                 alert("승인완료");
@@ -80,6 +82,11 @@
                 <td>휴대폰번호</td>
                 <td>${employee.phone}</td>
                 <td>${myInformation.phone}</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>${employee.address}</td>
+                <td>${myInformation.address}</td>
             </tr>
         </tbody>
     </table>

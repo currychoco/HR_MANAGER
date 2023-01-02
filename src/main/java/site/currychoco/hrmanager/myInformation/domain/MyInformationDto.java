@@ -23,6 +23,7 @@ public class MyInformationDto {
     private String allow;
     private Timestamp requestDate;
     private Timestamp allowDate;
+    private String address;
 
     public String getRequestDateToString() {
         if(requestDate != null) {
@@ -54,7 +55,7 @@ public class MyInformationDto {
             ownInfo.getPhone(),
             ownInfo.getAllow(),
             ownInfo.getRequestDate(),
-            ownInfo.getAllowDate()
+            ownInfo.getAllowDate(), ownInfo.getAddress()
         );
     }
 }

@@ -38,6 +38,8 @@ public class Employee {
     private String phone;
     @Column(name="start_date")
     private Timestamp startDate;
+    @Column(name="address")
+    private String address;
 
     public Employee(EmployeeDto dto){
         this.empNo = dto.getEmpNo();
@@ -50,6 +52,7 @@ public class Employee {
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
         this.startDate = new Timestamp(new Date().getTime());
+        this.address = dto.getAddress();
     }
 
     public void update(EmployeeDto dto) {
@@ -61,5 +64,6 @@ public class Employee {
         this.gender = dto.getGender();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
+        this.address = dto.getAddress();
     }
 }

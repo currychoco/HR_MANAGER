@@ -18,6 +18,7 @@
       const gender = $("#gender option:selected").val();
       const email = $("#email").val();
       const phone = $("#phone").val();
+      const address = $("#address").val();
 
       if(!empName || !empNameEn || !gender || !email || !phone) {
         alert("누락된 정보가 있습니다.");
@@ -29,9 +30,10 @@
       const originalGender ='<c:out value = "${employee.gender}"/>';
       const originalEmail = '<c:out value = "${employee.email}"/>';
       const originalPhone = '<c:out value = "${employee.phone}"/>';
+      const originalAddress = '<c:out value = "${employee.phone}"/>';
 
       if(empName === originalEmpName && empNameEn === originalEmpNameEn && gender === originalGender
-      && email === originalEmail && phone === originalPhone){
+      && email === originalEmail && phone === originalPhone && originalAddress === address){
         alert("기존 정보와 같습니다.");
         return;
       }
@@ -46,7 +48,8 @@
           empNameEn : empNameEn,
           gender : gender,
           email : email,
-          phone : phone
+          phone : phone,
+          address : address
         })
       }).done(function(response){
         console.log(response);
@@ -95,6 +98,9 @@
     </div>
     <div class="form-group">
       <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="address" name="address" placeholder="주소" value="${employee.address}" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block">나의 인사정보 수정요청</button>

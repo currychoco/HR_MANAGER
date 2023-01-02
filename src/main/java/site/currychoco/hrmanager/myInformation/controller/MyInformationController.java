@@ -74,6 +74,7 @@ public class MyInformationController {
         empDto.setGender(dto.getGender());
         empDto.setEmail(dto.getEmail());
         empDto.setPhone(dto.getPhone());
+        empDto.setAddress(dto.getAddress());
         employeeService.updateEmployee(empDto);
     }
 }

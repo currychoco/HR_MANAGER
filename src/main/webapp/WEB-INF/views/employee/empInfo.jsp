@@ -70,6 +70,10 @@
                         <th>아이디</th>
                         <td>\${emp.id}</td>
                     </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>\${emp.address}</td>
+                    </tr>
             `;
 
             $('#empInfo').append(htmlText);

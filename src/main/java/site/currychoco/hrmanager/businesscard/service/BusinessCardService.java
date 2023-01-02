@@ -9,6 +9,7 @@ import org.springframework.util.StreamUtils;
 import site.currychoco.hrmanager.businesscard.domain.BusiCard;
 import site.currychoco.hrmanager.businesscard.domain.BusiCardDto;
 import site.currychoco.hrmanager.businesscard.repository.BusiCardRepository;
+import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.repository.EmployeeAllInfoRepository;
 
@@ -37,7 +38,7 @@ public class BusinessCardService {
 
         try {
             // 사원정보 조회
-            EmployeeAllInfo empInfo = employeeAllInfoRepository.getAllByEmpNo(empNo);
+            EmployeeAllInfo empInfo = employeeAllInfoRepository.findById(empNo).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
             
             // 이미지 정보 생성
             BufferedImage buffImage = createImage(empInfo, cardType);

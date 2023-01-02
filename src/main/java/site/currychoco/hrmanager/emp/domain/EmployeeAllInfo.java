@@ -50,6 +50,8 @@ public class EmployeeAllInfo {
     private Timestamp startDate;
     @Column(name = "id")
     private String id = "-";
+    @Column(name = "address")
+    private String address;
 
     public String getStartDateToString() {
         if(startDate != null) {

@@ -3,6 +3,7 @@ package site.currychoco.hrmanager.emp.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.domain.EmployeeAllInfo;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
@@ -31,20 +32,20 @@ public class EmployeeService {
      * 사원 개인정보 불러오기
      */
     public EmployeeAllInfo getEmpInfoByEmpNo(Long empNo){
-        EmployeeAllInfo empAllInfo = employeeAllInfoRepository.getAllByEmpNo(empNo);
+        EmployeeAllInfo empAllInfo = employeeAllInfoRepository.findById(empNo).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
         return empAllInfo;
     }
 
     // 이름으로 사원 정보 리스트 가져오기
     public List<EmployeeAllInfo> getListByName(String name){
-        return employeeAllInfoRepository.findAllByEmpName(name);
+        return employeeAllInfoRepository.findByEmpNameContaining(name);
     }
 
     // 사번으로 사원 정보 리스트 가져오기
     public List<EmployeeAllInfo> getListByEmpNo(Long empNo){
         List<EmployeeAllInfo> list = new ArrayList<>();
-
-        list = employeeAllInfoRepository.findAllByEmpNo(empNo);
+        EmployeeAllInfo empAllInfo = employeeAllInfoRepository.findById(empNo).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
+        list.add(empAllInfo);
 
         return list;
     }

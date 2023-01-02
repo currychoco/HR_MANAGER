@@ -37,6 +37,8 @@ public class MyInformation {
     private Timestamp requestDate;
     @Column(name="allow_date")
     private Timestamp allowDate;
+    @Column(name="address")
+    private String address;
 
     public MyInformation(MyInformationDto dto){
         this.no = dto.getNo();
@@ -49,6 +51,7 @@ public class MyInformation {
         this.allow = dto.getAllow();
         this.requestDate = dto.getRequestDate();
         this.allowDate = dto.getAllowDate();
+        this.address = dto.getAddress();
     }
 
     public void modify(MyInformationDto dto){
@@ -62,5 +65,6 @@ public class MyInformation {
         this.allow = dto.getAllow();
         this.requestDate = dto.getRequestDate();
         this.allowDate = dto.getAllowDate();
+        this.address = dto.getAddress();
     }
 }

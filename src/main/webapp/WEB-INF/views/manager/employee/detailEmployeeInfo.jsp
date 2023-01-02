@@ -21,8 +21,9 @@
             const gender = $("#gender option:selected").val();
             const email = $("#email").val();
             const phone = $("#phone").val();
+            const address = $("#address").val();
 
-            if(!dept || !job || !position || !empName || !empNameEn || !gender || !email || !phone) {
+            if(!dept || !job || !position || !empName || !empNameEn || !gender || !email || !phone || !address) {
                 alert("누락된 정보가 있습니다.");
                 return;
             }
@@ -40,7 +41,8 @@
                     empNameEn : empNameEn,
                     gender : gender,
                     email : email,
-                    phone : phone
+                    phone : phone,
+                    address : address
                 })
             }).done(function(response){
                 alert("회원 정보 수정이 완료되었습니다 :)");
@@ -111,6 +113,9 @@
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="address" name="address" placeholder="주소" value="${employee.address}" required <c:if test="${!sessionScope.grant.contains('g000001')}">readonly</c:if>>
             </div>
             <c:if test="${sessionScope.grant.contains('g000013')}">
                 <div class="form-group" id="salary">
