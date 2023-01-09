@@ -10,7 +10,19 @@
 <html>
 <head>
   <c:import url="/WEB-INF/views/layout/head.jsp"/>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
   <script type="text/javascript">
+    function search(){
+      new daum.Postcode({
+        oncomplete: function(data) {
+          console.log(data);
+          $("#address1").val(data.address);
+          $("#zipCode").val(data.zonecode);
+        }
+      }).open();
+    }
+
     function updateEmployee(){
       const empNo = $("#empNo").val();
       const empName = $("#empName").val();
@@ -106,14 +118,15 @@
     <div class="form-group">
       <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
     </div>
+    <div class="form-inline" style="margin-bottom: 15px">
+      <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" value="${employee.zipCode}" required readonly>
+      <button type="button" class="btn" onclick="search()">주소검색</button>
+    </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" value="${employee.address1}" required>
+      <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" value="${employee.address1}" required readonly>
     </div>
     <div class="form-group">
       <input type="text" class="form-control" id="address2" name="address2" placeholder="상세 주소" value="${employee.address2}" required>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" value="${employee.zipCode}" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block">나의 인사정보 수정요청</button>

@@ -11,7 +11,20 @@
 <head>
     <c:import url="/WEB-INF/views/layout/head.jsp"/>
 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <script type="text/javascript">
+        function search(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    console.log(data);
+                    $("#address1").val(data.address);
+                    $("#zipCode").val(data.zonecode);
+                }
+            }).open();
+        }
+
+
         function createNewEmployee(){
             const dept = $("#dept option:selected").val();
             const job = $("#job option:selected").val();
@@ -108,11 +121,12 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" required>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" required>
+            <div class="form-inline" style="margin-bottom: 15px">
+                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" required readonly>
+                <button type="button" class="btn" onclick="search()">주소검색</button>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" required>
+                <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" required readonly>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소" required>
