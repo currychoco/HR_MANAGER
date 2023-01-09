@@ -38,8 +38,12 @@ public class Employee {
     private String phone;
     @Column(name="start_date")
     private Timestamp startDate;
-    @Column(name="address")
-    private String address;
+    @Column(name="address1")
+    private String address1;
+    @Column(name="address2")
+    private String address2;
+    @Column(name="zip_code")
+    private String zipCode;
 
     public Employee(EmployeeDto dto){
         this.empNo = dto.getEmpNo();
@@ -52,7 +56,9 @@ public class Employee {
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
         this.startDate = new Timestamp(new Date().getTime());
-        this.address = dto.getAddress();
+        this.address1 = dto.getAddress1();
+        this.address2 = dto.getAddress2();
+        this.zipCode = dto.getZipCode();
     }
 
     public void update(EmployeeDto dto) {
@@ -64,6 +70,8 @@ public class Employee {
         this.gender = dto.getGender();
         this.email = dto.getEmail();
         this.phone = dto.getPhone();
-        this.address = dto.getAddress();
+        this.address1 = dto.getAddress1();
+        this.address2 = dto.getAddress2();
+        this.zipCode = dto.getZipCode();
     }
 }

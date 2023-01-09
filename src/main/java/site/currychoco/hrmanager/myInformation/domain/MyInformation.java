@@ -37,8 +37,12 @@ public class MyInformation {
     private Timestamp requestDate;
     @Column(name="allow_date")
     private Timestamp allowDate;
-    @Column(name="address")
-    private String address;
+    @Column(name="address1")
+    private String address1;
+    @Column(name="address2")
+    private String address2;
+    @Column(name="zip_code")
+    private String zipCode;
 
     public MyInformation(MyInformationDto dto){
         this.no = dto.getNo();
@@ -51,7 +55,9 @@ public class MyInformation {
         this.allow = dto.getAllow();
         this.requestDate = dto.getRequestDate();
         this.allowDate = dto.getAllowDate();
-        this.address = dto.getAddress();
+        this.address1 = dto.getAddress1();
+        this.address2 = dto.getAddress2();
+        this.zipCode = dto.getZipCode();
     }
 
     public void modify(MyInformationDto dto){
@@ -65,6 +71,8 @@ public class MyInformation {
         this.allow = dto.getAllow();
         this.requestDate = dto.getRequestDate();
         this.allowDate = dto.getAllowDate();
-        this.address = dto.getAddress();
+        this.address1 = dto.getAddress1();
+        this.address2 = dto.getAddress2();
+        this.zipCode = dto.getZipCode();
     }
 }

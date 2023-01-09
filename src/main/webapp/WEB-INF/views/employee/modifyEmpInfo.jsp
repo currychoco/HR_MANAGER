@@ -18,9 +18,11 @@
       const gender = $("#gender option:selected").val();
       const email = $("#email").val();
       const phone = $("#phone").val();
-      const address = $("#address").val();
+      const address1 = $("#address1").val();
+      const address2 = $("#address2").val();
+      const zipCode = $("#zipCode").val();
 
-      if(!empName || !empNameEn || !gender || !email || !phone) {
+      if(!empName || !empNameEn || !gender || !email || !phone || !address1 || !address2 || !zipCode) {
         alert("누락된 정보가 있습니다.");
         return;
       }
@@ -30,10 +32,13 @@
       const originalGender ='<c:out value = "${employee.gender}"/>';
       const originalEmail = '<c:out value = "${employee.email}"/>';
       const originalPhone = '<c:out value = "${employee.phone}"/>';
-      const originalAddress = '<c:out value = "${employee.phone}"/>';
+      const originalAddress1 = '<c:out value = "${employee.address1}"/>';
+      const originalAddress2 = '<c:out value = "${employee.address2}"/>';
+      const originalZipCode = '<c:out value = "${employee.zipCode}"/>';
 
       if(empName === originalEmpName && empNameEn === originalEmpNameEn && gender === originalGender
-      && email === originalEmail && phone === originalPhone && originalAddress === address){
+      && email === originalEmail && phone === originalPhone && originalAddress1 === address1
+              && originalAddress2 === address2 && originalZipCode === zipCode){
         alert("기존 정보와 같습니다.");
         return;
       }
@@ -49,7 +54,9 @@
           gender : gender,
           email : email,
           phone : phone,
-          address : address
+          address1 : address1,
+          address2 : address2,
+          zipCode : zipCode
         })
       }).done(function(response){
         console.log(response);
@@ -100,7 +107,13 @@
       <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" value="${employee.phone}" required>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="address" name="address" placeholder="주소" value="${employee.address}" required>
+      <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" value="${employee.address1}" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="address2" name="address2" placeholder="상세 주소" value="${employee.address2}" required>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" value="${employee.zipCode}" required>
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block">나의 인사정보 수정요청</button>

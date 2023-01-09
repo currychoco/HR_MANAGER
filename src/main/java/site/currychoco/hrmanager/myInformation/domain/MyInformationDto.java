@@ -23,7 +23,9 @@ public class MyInformationDto {
     private String allow;
     private Timestamp requestDate;
     private Timestamp allowDate;
-    private String address;
+    private String address1;
+    private String address2;
+    private String zipCode;
 
     public String getRequestDateToString() {
         if(requestDate != null) {
@@ -55,7 +57,8 @@ public class MyInformationDto {
             ownInfo.getPhone(),
             ownInfo.getAllow(),
             ownInfo.getRequestDate(),
-            ownInfo.getAllowDate(), ownInfo.getAddress()
+            ownInfo.getAllowDate(), ownInfo.getAddress1(),
+                ownInfo.getAddress2(), ownInfo.getZipCode()
         );
     }
 }

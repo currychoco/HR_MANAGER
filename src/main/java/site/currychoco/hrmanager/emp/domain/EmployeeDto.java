@@ -24,7 +24,9 @@ public class EmployeeDto {
     private String email;
     private String phone;
     private Timestamp startDate;
-    private String address;
+    private String address1;
+    private String address2;
+    private String zipCode;
 
     public static EmployeeDto fromEntity(Employee emp){
         if(emp == null){
@@ -41,7 +43,9 @@ public class EmployeeDto {
                 emp.getEmail(),
                 emp.getPhone(),
                 emp.getStartDate(),
-                emp.getAddress()
+                emp.getAddress1(),
+                emp.getAddress2(),
+                emp.getZipCode()
         );
     }
 }

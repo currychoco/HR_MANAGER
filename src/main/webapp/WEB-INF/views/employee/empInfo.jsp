@@ -72,7 +72,7 @@
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td>\${emp.address}</td>
+                        <td>\${emp.zipCode}&nbsp;\${emp.address1}&nbsp;\${emp.address2}</td>
                     </tr>
             `;
 

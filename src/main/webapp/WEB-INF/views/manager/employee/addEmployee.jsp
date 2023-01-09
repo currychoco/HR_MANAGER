@@ -21,8 +21,11 @@
             const gender = $("#gender option:selected").val();
             const email = $("#email").val();
             const phone = $("#phone").val();
+            const address1 = $("#address1").val();
+            const address2 = $("#address2").val();
+            const zipCode = $("#zipCode").val();
 
-            if(!dept || !job || !position || !empName || !empNameEn || !gender || !email || !phone) {
+            if(!dept || !job || !position || !empName || !empNameEn || !gender || !email || !phone || !address1 || !address2 || !zipCode) {
                 alert("누락된 내용이 있습니다.");
                 return;
             }
@@ -39,15 +42,14 @@
                     empNameEn : empNameEn,
                     gender : gender,
                     email : email,
-                    phone : phone
+                    phone : phone,
+                    address1 : address1,
+                    address2 : address2,
+                    zipCode : zipCode
                 })
             }).done(function(response){
-                if(response){
-                    alert("생성완료");
-                    location.reload();
-                }else{
-                    alert("생성실패");
-                }
+                alert("생성완료");
+                location.reload();
             }).fail(function(err){
                 err.responseJSON && alert(err.responseJSON.message);
             });
@@ -105,6 +107,15 @@
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="우편번호" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="address1" name="address1" placeholder="주소" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="address2" name="address2" placeholder="상세주소" required>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">생성</button>

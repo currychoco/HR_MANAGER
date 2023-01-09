@@ -60,6 +60,7 @@
                 }
             });
         });
+
     </script>
 </head>
 <body>
@@ -67,7 +68,7 @@
     <div class="container body-container">
         <h3 class="title">사원 관리</h3>
         <div class="text-center">
-            <form class="form-inline">
+            <form class="form-inline" onsubmit="return false">
                 <input type="text" class="form-control" id = "nameOrEmpNo" name="nameOrEmpNo" placeholder="이름 or 사번" />
                 <button type="button" class="btn btn-primary" onclick="search()">검색</button>
             </form>
