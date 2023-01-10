@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import site.currychoco.hrmanager.core.interceptor.CheckAuthorityInterceptor;
+import site.currychoco.hrmanager.core.interceptor.CheckExternalApiInterceptor;
 import site.currychoco.hrmanager.core.interceptor.CheckLoginInterceptor;
 
 import java.util.Arrays;
@@ -18,6 +19,9 @@ public class ContextConfig implements WebMvcConfigurer {
 
     @Autowired
     private CheckAuthorityInterceptor checkAuthorityInterceptor;
+
+    @Autowired
+    private CheckExternalApiInterceptor checkExternalApiInterceptor;
 
     /**
      * CORS 방지용
@@ -35,9 +39,13 @@ public class ContextConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns(Arrays.asList("/js/**", "/image/**", "/favicon.png"))
                 .excludePathPatterns(Arrays.asList("/login", "/join"))
-                .excludePathPatterns(Arrays.asList("/account/**", "/error"));
+                .excludePathPatterns(Arrays.asList("/account/**", "/error"))
+                .excludePathPatterns(Arrays.asList("/external-api/**"));
 
         registry.addInterceptor(checkAuthorityInterceptor)
                 .addPathPatterns("/**");
+
+        registry.addInterceptor(checkExternalApiInterceptor)
+                .addPathPatterns("/external-api/**");
     }
 }

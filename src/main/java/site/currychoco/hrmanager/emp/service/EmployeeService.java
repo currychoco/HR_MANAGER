@@ -77,4 +77,18 @@ public class EmployeeService {
         EmployeeDto dto = EmployeeDto.fromEntity(employee);
         return dto;
     }
+
+    /**
+     * 모든 사원 정보
+     */
+    public List<EmployeeDto> getAllEmployee(){
+        List<Employee> list = employeeRepository.findAll();
+        List<EmployeeDto> dtoList = new ArrayList<>();
+
+        for(Employee e : list){
+            dtoList.add(EmployeeDto.fromEntity(e));
+        }
+
+        return dtoList;
+    }
 }
