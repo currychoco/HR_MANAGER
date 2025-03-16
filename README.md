@@ -1,5 +1,5 @@
 # HR_MANAGER
-인사시스템 서비스
+사내 인사 관리시스템 서비스
 
 ## Spec
 - Spring Boot 2.7.5
