@@ -6,6 +6,5 @@
 - Java 11
 - Maven Build
 - JSP
-- Spring Security
 - MySQL
 - JPA (Hibernate)
