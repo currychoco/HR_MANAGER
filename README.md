@@ -8,3 +8,6 @@
 - JSP
 - MySQL
 - JPA (Hibernate)
+
+## 계정 동기화
+- [HR_MANAGER](https://github.com/currychoco/HR_MANAGER) 의 인사계정 정보를 동기화하여 자산관리를 진행한다.
