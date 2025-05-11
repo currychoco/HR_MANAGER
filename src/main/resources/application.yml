@@ -1,0 +1,45 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  mvc:
+    servlet:
+      path: /
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  h2:
+    console:
+      enabled: true
+      path: /hr_manager
+      settings:
+        web-allow-others: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./h2/hr_manager;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;IFEXISTS=FALSE
+    username: test
+    password: 1234
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+  jackson:
+    locale: ko_KR
+    time-zone: Asia/Seoul
+
+mail:
+  smtp:
+    auth: true
+    starttls:
+      required: true
+      enable: true
+    socketFactory:
+      class: javax.net.ssl.SSLSocketFactory
+      fallback: false
+      port: 465
+    port: 465
+
+admin-mail:
+  id: a01058031306@gmail.com
+  password: nncnmgpcidzuquoz

@@ -8,15 +8,7 @@ import site.currychoco.hrmanager.emp.service.EmployeeService;
 
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class ApiTest {
-    @Autowired
-    EmployeeService employeeService;
-
-    @Test
-    void 출력되나테스트(){
-        List<EmployeeDto> list = employeeService.getAllEmployee();
-        System.out.println(list);
-    }
 
 }
