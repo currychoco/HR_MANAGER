@@ -20,7 +20,7 @@
         </div>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required/>
+                <input type="text" class="form-control" id="id" name="id" placeholder="아이디3" required/>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" id="password" name="password" placeholder="패스워드" required/>

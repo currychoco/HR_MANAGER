@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -41,9 +42,12 @@ public class AccountController {
     // 로그인
     @ResponseBody
     @PostMapping("/account/login")
-    public boolean login(@RequestParam String id, @RequestParam String password, HttpServletRequest request){
+    public boolean login(@RequestBody Map<String, Object> body, HttpServletRequest request){
 
         sleep();
+
+        String id = (String) body.get("id");
+        String password = (String) body.get("password");
 
         AccountDto result = accountService.login(id, password);
 

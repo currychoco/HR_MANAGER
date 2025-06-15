@@ -32,7 +32,7 @@ public class EmployeeService {
      * 사원 개인정보 불러오기
      */
     public EmployeeAllInfo getEmpInfoByEmpNo(Long empNo){
-        EmployeeAllInfo empAllInfo = employeeAllInfoRepository.findById(empNo).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
+        EmployeeAllInfo empAllInfo = employeeAllInfoRepository.findByEmpNo(empNo).orElseThrow(()->new BadRequestException("해당 사원이 존재하지 않습니다"));
         return empAllInfo;
     }
 

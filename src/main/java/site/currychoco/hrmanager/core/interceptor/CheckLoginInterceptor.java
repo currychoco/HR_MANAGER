@@ -21,7 +21,7 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
             }
         }
 
-        response.sendRedirect("/login");
+        response.setStatus(401);
         return false;
     }
 }

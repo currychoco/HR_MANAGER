@@ -44,10 +44,11 @@ public class MyInformationController {
     // ---
     @ResponseBody
     @PostMapping("/my-info/create")
-    public void createOwnInfo(@RequestBody MyInformationDto dto){
+    public String createOwnInfo(@RequestBody MyInformationDto dto){
         dto.setRequestDate(new Timestamp(System.currentTimeMillis()));
         dto.setAllow("R");
         myInformationService.saveOwnInfo(dto);
+        return "";
     }
 
     @CheckAuthority(authCode = "g000015")
