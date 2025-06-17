@@ -11,7 +11,12 @@ import site.currychoco.hrmanager.core.account.repository.EmailIdentificationRepo
 import site.currychoco.hrmanager.core.exception.BadRequestException;
 import site.currychoco.hrmanager.emp.domain.Employee;
 import site.currychoco.hrmanager.emp.repository.EmployeeRepository;
+import site.currychoco.hrmanager.position.domain.Position;
+import site.currychoco.hrmanager.position.domain.PositionDto;
 import site.currychoco.hrmanager.trdparty.email.util.EmailSendUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -98,4 +103,15 @@ public class AccountService {
         return accountRepository.existsById(empNo);
     }
 
+    public List<AccountDto> getAllAccount(){
+        List<AccountDto> accountDtoList = new ArrayList<>();
+
+        List<Account> list = accountRepository.findAll();
+
+        for(Account ac : list) {
+            accountDtoList.add(AccountDto.fromEntity(ac));
+        }
+
+        return accountDtoList;
+    }
 }

@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.currychoco.hrmanager.core.account.domain.AccountDto;
+import site.currychoco.hrmanager.core.account.service.AccountService;
 import site.currychoco.hrmanager.department.domain.DepartmentDto;
 import site.currychoco.hrmanager.department.service.DepartmentService;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
@@ -24,6 +26,7 @@ public class ExternalApiController {
     private final DepartmentService departmentService;
     private final JobService jobService;
     private final PositionService positionService;
+    private final AccountService accountService;
 
     @GetMapping("/employee")
     public List<EmployeeDto> getAllEmployee(){
@@ -43,5 +46,10 @@ public class ExternalApiController {
     @GetMapping("/position")
     public List<PositionDto> getAllPosition(){
         return positionService.getAllPosition();
+    }
+
+    @GetMapping("/account")
+    public List<AccountDto> getAllAccount() {
+        return accountService.getAllAccount();
     }
 }

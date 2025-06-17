@@ -106,3 +106,89 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	... 47 more
 2025-06-15 21:20:25 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT\000a    emp.emp_no AS empNo,\000a    emp.address1 AS address1,\000a    emp.address2 AS address2,\000a    emp.dept_code AS deptCode,\000a    dept.dept_name AS deptName,\000a    dept.dept_name_en AS deptNameEn,\000a    emp.email AS email,\000a    emp.emp_name AS empName,\000a    emp.emp_name_en AS empNameEn,\000a    emp.gender AS gender,\000a    acc.id AS accountId,\000a    emp.job_code AS jobCode,\000a    j.job_name AS jobName,\000a    j.job_name_en AS jobNameEn,\000a    emp.phone AS phone,\000a    emp.position_code AS positionCode,\000a    p.position_name AS positionName,\000a    p.position_name_en AS positionNameEn,\000a    emp.start_date AS startDate,\000a    emp.zip_code AS zipCode\000aFROM employee emp\000a    INNER JOIN job j ON emp.job_code = j.job_code\000a    INNER JOIN department dept ON emp.dept_code = dept.dept_code\000a    INNER JOIN account acc ON emp.emp_no = acc.emp_no\000a    INNER JOIN position p ON emp.position_code = p.position_code\000aWHERE emp.emp_no = #{empNo}\000a[*]" [42000-214]
+2025-06-18 01:44:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select *\000d\000a[*]10from api_key"; SQL statement:
+select *
+10from api_key [42000-214]
+2025-06-18 01:50:31 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column count does not match; SQL statement:
+insert into api_key_auth values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/department') [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:555)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:168)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-06-18 01:52:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select *\000d\000a[*]10from api_key_ip"; SQL statement:
+select *
+10from api_key_ip [42000-214]
+2025-06-18 01:52:42 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select *\000d\000a[*]10from api_key_ip"; SQL statement:
+select *
+10from api_key_ip [42000-214]
+2025-06-18 01:54:32 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')\000d\000a[*]insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')\000d\000ainsert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee')"; SQL statement:
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee') [42000-214]
+2025-06-18 01:54:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')\000d\000a[*]insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')\000d\000ainsert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee')"; SQL statement:
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee') [42000-214]
+2025-06-18 01:54:54 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')\000d\000a[*]insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')\000d\000ainsert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee')"; SQL statement:
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/job')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/position')
+insert into api_key_auth(api_key, method, uri) values ('de585859-4425-4898-9cfe-5b743d5cbda9', 'GET', '/external-api/employee') [42000-214]
+2025-06-18 01:59:05 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select *\000d\000a[*]10from employee"; SQL statement:
+select *
+10from employee [42000-214]
