@@ -65,9 +65,9 @@ public class BusinessCardService {
             BufferedImage cardImg = ImageIO.read(new ClassPathResource("static/image/card_template/card_" + cardType + ".png").getInputStream());
 
             String empName = "ko".equals(cardType) ? empInfo.getEmpName() : empInfo.getEmpNameEn();
-            String deptName = "ko".equals(cardType) ? empInfo.getDeptName() : empInfo.getDeptNameEn();
-            String jobName = "ko".equals(cardType) ? empInfo.getJobName() : empInfo.getJobNameEn();
-            String positionName = "ko".equals(cardType) ? empInfo.getPositionName() : empInfo.getPositionNameEn();
+            String deptName = "ko".equals(cardType) ? empInfo.getDepartment().getDeptName() : empInfo.getDepartment().getDeptNameEn();
+            String jobName = "ko".equals(cardType) ? empInfo.getJob().getJobName() : empInfo.getJob().getJobNameEn();
+            String positionName = "ko".equals(cardType) ? empInfo.getPosition().getPositionName() : empInfo.getPosition().getPositionNameEn();
 
             BufferedImage nameImg = this.convertTextToBufferedImage(empName, new Font(BUSINESS_CARD_FONT_NAME, Font.PLAIN, 42), Color.BLACK);
             BufferedImage deptImg = this.convertTextToBufferedImage(deptName, new Font(BUSINESS_CARD_FONT_NAME, Font.PLAIN, 18), Color.BLACK);

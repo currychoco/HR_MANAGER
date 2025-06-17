@@ -116,12 +116,12 @@ async function updateEmployee() {
       </div>
 
       <div class="form-inline" style="margin-bottom: 15px">
-        <input type="text" class="form-control" v-model="zipCode" placeholder="우편번호" required />
+        <input type="text" class="form-control" v-model="zipCode" placeholder="우편번호" required readonly />
         <button type="button" class="btn" @click="searchPostcode">주소검색</button>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" v-model="address1" placeholder="주소" required />
+        <input type="text" class="form-control" v-model="address1" placeholder="주소" required readonly />
       </div>
 
       <div class="form-group">

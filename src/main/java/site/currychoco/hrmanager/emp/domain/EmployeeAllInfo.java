@@ -1,68 +1,60 @@
 package site.currychoco.hrmanager.emp.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import site.currychoco.hrmanager.core.account.domain.Account;
+import site.currychoco.hrmanager.department.domain.Department;
+import site.currychoco.hrmanager.job.domain.Job;
+import site.currychoco.hrmanager.position.domain.Position;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 @Entity
-@Table(name = "employee_all_info")
+@Table(name = "employee")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @ToString
 public class EmployeeAllInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_no")
     private Long empNo;
     @Column(name = "emp_name")
     private String empName;
     @Column(name = "emp_name_en")
     private String empNameEn;
-    @Column(name = "dept_code")
-    private String deptCode;
-    @Column(name = "dept_name")
-    private String deptName;
-    @Column(name = "dept_name_en")
-    private String deptNameEn;
-    @Column(name = "job_code")
-    private String jobCode;
-    @Column(name = "job_name")
-    private String jobName;
-    @Column(name = "job_name_en")
-    private String jobNameEn;
-    @Column(name = "position_code")
-    private String positionCode;
-    @Column(name = "position_name")
-    private String positionName;
-    @Column(name = "position_name_en")
-    private String positionNameEn;
     @Column(name = "gender")
     private String gender;
     @Column(name = "email")
     private String email;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "start_date")
+    @Column(name="start_date")
     private Timestamp startDate;
-    @Column(name = "id")
-    private String id = "-";
-    @Column(name = "address1")
+    @Column(name="address1")
     private String address1;
-    @Column(name = "address2")
+    @Column(name="address2")
     private String address2;
-    @Column(name = "zip_code")
+    @Column(name="zip_code")
     private String zipCode;
 
-    public String getStartDateToString() {
-        if(startDate != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            return sdf.format(startDate);
-        }
-        return null;
-    }
+    @ManyToOne
+    @JoinColumn(name = "dept_code", insertable = false, updatable = false)
+    private Department department;
 
+    @ManyToOne
+    @JoinColumn(name = "job_code", insertable = false, updatable = false)
+    private Job job;
+
+    @ManyToOne
+    @JoinColumn(name = "position_code", insertable = false, updatable = false)
+    private Position position;
+
+    @OneToOne
+    @JoinColumn(name = "emp_no", insertable = false, updatable = false)
+    private Account account;
 }

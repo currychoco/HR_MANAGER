@@ -1,8 +1,7 @@
 package site.currychoco.hrmanager.myInformation.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.currychoco.hrmanager.core.annotation.CheckAuthority;
 import site.currychoco.hrmanager.emp.domain.EmployeeDto;
@@ -14,55 +13,42 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class MyInformationController {
 
     private final MyInformationService myInformationService;
 
     private final EmployeeService employeeService;
 
-    // ---
-    // page
-    // ---
-    @CheckAuthority(authCode = "g000015")
-    @GetMapping("/manager/allow/list")
-    public String allowList(){return "manager/allow/allowList";}
-
-    @CheckAuthority(authCode = "g000015")
-    @GetMapping("/manager/allow/detail")
-    public String detailAllow(@RequestParam Long no, @RequestParam Long empNo, Model model){
-        EmployeeDto empDto = employeeService.getEmployeeByEmpNo(empNo);
-        MyInformationDto myDto = myInformationService.getMyInformation(no);
-
-        model.addAttribute("employee", empDto);
-        model.addAttribute("myInformation", myDto);
-        return "manager/allow/detailAllow";
-    }
-
-    // ---
-    // api
-    // ---
-    @ResponseBody
     @PostMapping("/my-info/create")
-    public String createOwnInfo(@RequestBody MyInformationDto dto){
+    public ResponseEntity<Void> createOwnInfo(@RequestBody MyInformationDto dto){
         dto.setRequestDate(new Timestamp(System.currentTimeMillis()));
         dto.setAllow("R");
         myInformationService.saveOwnInfo(dto);
-        return "";
+        return ResponseEntity.ok(null);
     }
 
     @CheckAuthority(authCode = "g000015")
-    @ResponseBody
+    @GetMapping("/manager/employee/{empNo}")
+    public ResponseEntity<EmployeeDto> getEmployeeByNo(@PathVariable Long empNo) {
+        return ResponseEntity.ok(employeeService.getEmployeeByEmpNo(empNo));
+    }
+
+    @CheckAuthority(authCode = "g000015")
+    @GetMapping("/manager/my-information/{no}")
+    public ResponseEntity<MyInformationDto> getMyInformationByNo(@PathVariable Long no) {
+        return ResponseEntity.ok(myInformationService.getMyInformation(no));
+    }
+
+    @CheckAuthority(authCode = "g000015")
     @GetMapping("/allow/list")
-    public List<MyInformationDto> getAllowList(){
-        List<MyInformationDto> list = myInformationService.getAllowList();
-        return list;
+    public ResponseEntity<List<MyInformationDto>> getAllowList(){
+        return ResponseEntity.ok(myInformationService.getAllowList());
     }
 
     @CheckAuthority(authCode = "g000015")
-    @ResponseBody
     @PostMapping("/allow/update")
-    public void updateAllow(@RequestBody MyInformationDto dto){
+    public ResponseEntity<Void> updateAllow(@RequestBody MyInformationDto dto){
         MyInformationDto myInfoDto = myInformationService.getMyInformation(dto.getNo());
         dto.setAllow("Y");
         dto.setRequestDate(myInfoDto.getRequestDate());
@@ -78,5 +64,7 @@ public class MyInformationController {
         empDto.setAddress1(dto.getAddress1());
         empDto.setAddress2(dto.getAddress2());
         employeeService.updateEmployee(empDto);
+
+        return ResponseEntity.ok(null);
     }
 }

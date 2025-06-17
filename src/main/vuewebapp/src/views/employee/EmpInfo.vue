@@ -38,7 +38,7 @@ function modifyOwnInfo() {
             <tr><th>이메일</th><td>{{ emp.email }}</td></tr>
             <tr><th>휴대폰 번호</th><td>{{ emp.phone }}</td></tr>
             <tr><th>입사일</th><td>{{ emp.startDateToString }}</td></tr>
-            <tr><th>아이디</th><td>{{ emp.id }}</td></tr>
+            <tr><th>아이디</th><td>{{ emp.accountId }}</td></tr>
             <tr><th>주소</th><td>{{ emp.zipCode }} {{ emp.address1 }} {{ emp.address2 }}</td></tr>
         </tbody>
         </table>

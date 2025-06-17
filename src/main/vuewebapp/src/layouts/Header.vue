@@ -56,7 +56,7 @@ async function logout() {
                         <li><a href="/manager/authority/grant">권한 부여</a></li>
                         <li class="dropdown-header">신청 승인</li>
                         <li><a href="/manager/allow/list">수정 신청 허가</a></li>
-                        <li><a href="/manager/busi-card/allow">명함 신청 허가</a></li>
+                        <li><a href="/manager/busi-card-allow/list">명함 신청 허가</a></li>
                     </ul>
                 </li>
             </ul>
