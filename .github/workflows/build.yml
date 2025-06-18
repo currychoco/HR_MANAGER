@@ -24,7 +24,7 @@ jobs:
         working-directory: src/main/vuewebapp
         run: |
           npm install
-          npm run build
+          npm run build-only
 
       # 4. Build Frontend Docker Image
       - name: Build Frontend Docker Image
