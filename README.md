@@ -12,16 +12,21 @@
 ## Docker 환경 구성
 아래 Container Registry 를 참고하여 테스트
 
+### Local Docker Network 생성
+``` bash
+docker network create hr-manager
+```
+
 ### HR_MANAGER API 서비스
 - https://github.com/users/currychoco/packages/container/package/hr-manager-api
 ``` bash
 docker pull ghcr.io/currychoco/hr-manager-api:latest
-docker run --platform=linux/amd64 -p 8080:8080 ghcr.io/currychoco/hr-manager-api:latest
+docker run --name hr-manager-api --network hr-manager --platform=linux/amd64 -p 8080:8080 ghcr.io/currychoco/hr-manager-api:latest
 ```
 
 ### HR_MANAGER Frontend 서비스
 - https://github.com/users/currychoco/packages/container/package/hr-manager-fe
 ``` bash
 docker pull ghcr.io/currychoco/hr-manager-fe:latest
-docker run --platform=linux/amd64 -p 80:80 ghcr.io/currychoco/hr-manager-fe:latest
+docker run --name hr-manager-fe --network hr-manager --platform=linux/amd64 -p 80:80 ghcr.io/currychoco/hr-manager-fe:latest
 ```
