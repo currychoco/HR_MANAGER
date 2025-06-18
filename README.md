@@ -5,6 +5,6 @@
 - Spring Boot 2.7.18
 - Java 21
 - Maven Build
-- Vue3
-- MySQL
+- Vue3 + Vite
+- H2 Database
 - JPA (Hibernate)
