@@ -6,7 +6,42 @@ on:
       - master
 
 jobs:
-  build:
+  build-fe:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Repository Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2 Set Up Node.js 22
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      # 3 Install and Build React Project
+      - name: Install and Build React Project
+        working-directory: src/main/vuewebapp
+        run: |
+          npm install
+          npm run build
+
+      # 4. Build Frontend Docker Image
+      - name: Build Frontend Docker Image
+        run: docker build -f docker/Dockerfile-fe -t ghcr.io/currychoco/hr-manager-fe:latest .
+
+      # 5. Push Docker Image to Docker Hub
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Push Frontend Docker Image
+        run: docker push ghcr.io/currychoco/hr-manager-fe:latest
+
+  build-api:
     runs-on: ubuntu-latest
     steps:
       # 1. Repository Checkout
@@ -37,8 +72,8 @@ jobs:
       - name: Build API Docker Image
         run: |
           docker build \
-            -f Dockerfile \
-            -t ghcr.io/currychoco/hr-manager:latest .
+            -f docker/Dockerfile-api \
+            -t ghcr.io/currychoco/hr-manager-api:latest .
 
       # 6. Push Docker Image to Docker Hub
       - name: Log in to GitHub Container Registry
@@ -49,4 +84,4 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Push API Docker Image
-        run: docker push ghcr.io/currychoco/hr-manager:latest
+        run: docker push ghcr.io/currychoco/hr-manager-api:latest
